@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 413626}
   - component: {fileID: 9549874}
   m_Layer: 0
-  m_Name: Knight_Black
+  m_Name: Knight_Two-Handed_Swordsman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

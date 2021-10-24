@@ -256,7 +256,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1163043510179582856}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: KnightMaker, Assembly-CSharp
+        m_MethodName: CreateTwoHandedSwordsmen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1970911228569186328
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,7 +693,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1843776738328926571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: KnightMaker, Assembly-CSharp
+        m_MethodName: CreateShooters
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6562638914391422731
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +826,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5508813697013113078}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: KnightMaker, Assembly-CSharp
+        m_MethodName: CreateSwordsmen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6835457117514553561
 GameObject:
   m_ObjectHideFlags: 0

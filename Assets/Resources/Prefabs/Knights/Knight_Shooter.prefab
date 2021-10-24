@@ -2333,7 +2333,7 @@ GameObject:
   - component: {fileID: 452472}
   - component: {fileID: 9523868}
   m_Layer: 0
-  m_Name: Knight_Brown
+  m_Name: Knight_Shooter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

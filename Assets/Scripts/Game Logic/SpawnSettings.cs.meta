@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 10fbd74e973607945a6a8887a432bb7e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - shooter: {fileID: 172688, guid: edcd42e8e09e10f488cb388c797f00b8, type: 3}
+  - swordsman: {fileID: 113364, guid: 45253028f8c5d404891b031974cf27d4, type: 3}
+  - twoHandedSwordsman: {fileID: 111886, guid: 1fb2851461da9f846b5e9211658388fc, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
