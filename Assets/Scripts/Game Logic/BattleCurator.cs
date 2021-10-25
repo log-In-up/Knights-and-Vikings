@@ -24,14 +24,15 @@ public sealed class BattleCurator : MonoBehaviour
     #endregion
 
     #region MonoBehaviour API
-    private void Awake()
-    {
-        inBattle = true;
-    }
-
     private void Start()
     {
-        InitializeVariables();
+        inBattle = true;
+        knightMaker = new KnightMaker(this, spawnPoints);
+
+        aliveKnights = new List<KnightBehaviour>();
+        aliveVikings = new List<VikingBehaviour>();
+        deadKnights = new List<KnightBehaviour>();
+        deadVikings = new List<VikingBehaviour>();
     }
     #endregion
 
@@ -40,14 +41,16 @@ public sealed class BattleCurator : MonoBehaviour
 
     internal void AddAliveViking(VikingBehaviour viking) => aliveVikings.Add(viking);
 
-    private void InitializeVariables()
+    internal void AddDeadKnight(KnightBehaviour knight)
     {
-        knightMaker = new KnightMaker(this, spawnPoints);
+        aliveKnights.Remove(knight);
+        deadKnights.Add(knight);
+    }
 
-        aliveKnights = new List<KnightBehaviour>();
-        aliveVikings = new List<VikingBehaviour>();
-        deadKnights = new List<KnightBehaviour>();
-        deadVikings = new List<VikingBehaviour>();
+    internal void AddDeadViking(VikingBehaviour viking)
+    {
+        aliveVikings.Remove(viking);
+        deadVikings.Add(viking);
     }
     #endregion
 
