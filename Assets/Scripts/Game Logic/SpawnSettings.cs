@@ -4,8 +4,7 @@ using UnityEngine;
 public sealed class SpawnSettings : ScriptableObject
 {
     #region Create asset menu constants
-    private const string fileName = "Spawn Settings";
-    private const string menuName = "Scriptable Objects/Spawn Settings";
+    private const string fileName = "Spawn Settings", menuName = "Game settings/Spawn settings";
     private const int order = 1;
     #endregion
 
@@ -13,15 +12,15 @@ public sealed class SpawnSettings : ScriptableObject
 #pragma warning disable IDE0044
     [Header("Shooter spawn settings")]
     [SerializeField] private GameObject shooter = null;
-    [SerializeField] private int shooterSpawnCount = 2;
+    [SerializeField, Min(0)] private int shooterSpawnCount = 2;
 
     [Header("Swordsman spawn settings")]
     [SerializeField] private GameObject swordsman = null;
-    [SerializeField] private int swordsmanSpawnCount = 3;
+    [SerializeField, Min(0)] private int swordsmanSpawnCount = 3;
 
     [Header("Two-Handed Swordsman spawn settings")]
     [SerializeField] private GameObject twoHandedSwordsman = null;
-    [SerializeField] private int twoHandedSwordsmanSpawnCount = 1;
+    [SerializeField, Min(0)] private int twoHandedSwordsmanSpawnCount = 1;
 #pragma warning restore IDE0044
     #endregion
 

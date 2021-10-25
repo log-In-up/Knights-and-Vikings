@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: cd025414911b5cb42b790a91edc7b218, type: 2}
 --- !u!1 &34280961
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +472,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1248691761
 Transform:
@@ -560,7 +560,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2119648963}
-  - component: {fileID: 2119648964}
+  - component: {fileID: 2119648965}
   m_Layer: 2
   m_Name: Game Logic
   m_TagString: Untagged
@@ -582,7 +582,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2119648964
+--- !u!114 &2119648965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2119648962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b00d3e34fff8ade49b3a0f66461441f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2912b6b30efc23d4e9b87c0298026538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnSettings: {fileID: 11400000, guid: 8297e27d1e23b864681547a80734e363, type: 2}
@@ -674,7 +674,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2119648964}
+      objectReference: {fileID: 2119648965}
     - target: {fileID: 4899751590421929571, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -709,12 +709,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2119648964}
+      objectReference: {fileID: 2119648965}
     - target: {fileID: 8120817674608139922, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2119648964}
+      objectReference: {fileID: 2119648965}
     - target: {fileID: 8418710576741338394, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
         type: 3}
       propertyPath: m_Pivot.x

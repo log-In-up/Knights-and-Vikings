@@ -1,9 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class KnightDeadState : IKnightState
 {
+    private readonly KnightBehaviour knightBehaviour = null;
+
+    public KnightDeadState(KnightBehaviour knightBehaviour)
+    {
+        this.knightBehaviour = knightBehaviour;
+    }
+
     public void Close()
     {
 

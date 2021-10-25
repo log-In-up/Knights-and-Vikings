@@ -258,7 +258,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: KnightMaker, Assembly-CSharp
+        m_TargetAssemblyTypeName: BattleCurator, Game Logic
         m_MethodName: CreateTwoHandedSwordsmen
         m_Mode: 1
         m_Arguments:
@@ -695,7 +695,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: KnightMaker, Assembly-CSharp
+        m_TargetAssemblyTypeName: BattleCurator, Game Logic
         m_MethodName: CreateShooters
         m_Mode: 1
         m_Arguments:
@@ -828,7 +828,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: KnightMaker, Assembly-CSharp
+        m_TargetAssemblyTypeName: BattleCurator, Game Logic
         m_MethodName: CreateSwordsmen
         m_Mode: 1
         m_Arguments:

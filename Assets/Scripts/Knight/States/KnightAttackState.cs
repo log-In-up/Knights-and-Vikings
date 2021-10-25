@@ -1,9 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KnightAttackState : IKnightState
 {
+    private readonly KnightBehaviour knightBehaviour = null;
+
+    public KnightAttackState(KnightBehaviour knightBehaviour)
+    {
+        this.knightBehaviour = knightBehaviour;
+    }
+
     public void Close()
     {
 
@@ -16,6 +21,6 @@ public class KnightAttackState : IKnightState
 
     public void Update()
     {
-
+        Debug.Log(knightBehaviour.State);
     }
 }

@@ -1,31 +1,20 @@
 using UnityEngine;
 
-[DisallowMultipleComponent]
-public sealed class KnightMaker : MonoBehaviour
+public sealed class KnightMaker
 {
     #region Parameters
-    [SerializeField] private SpawnSettings spawnSettings = null;
-
-    [SerializeField] private Transform[] spawnPoints = null;
+    private readonly BattleCurator curator = null;
+    private readonly Transform[] spawnPoints = null;
     #endregion
 
+    public KnightMaker(BattleCurator curator, Transform[] spawnPoints)
+    {
+        this.curator = curator;
+        this.spawnPoints = spawnPoints;
+    }
+
     #region Custom methods
-    public void CreateShooters()
-    {
-        CreateEntities(spawnSettings.Shooter, spawnSettings.ShooterSpawnCount);
-    }
-
-    public void CreateSwordsmen()
-    {
-        CreateEntities(spawnSettings.Swordsman, spawnSettings.SwordsmanSpawnCount);
-    }
-
-    public void CreateTwoHandedSwordsmen()
-    {
-        CreateEntities(spawnSettings.TwoHandedSwordsman, spawnSettings.TwoHandedSwordsmanSpawnCount);
-    }
-
-    private void CreateEntities(GameObject entity, int count)
+    internal void CreateEntities(GameObject entity, int count)
     {
         int spawnIndex = 0;
 
@@ -34,7 +23,13 @@ public sealed class KnightMaker : MonoBehaviour
             Transform spawnPosition = spawnPoints[spawnIndex];
             spawnIndex = ++spawnIndex % spawnPoints.Length;
 
-            Instantiate(entity, spawnPosition.position, spawnPosition.rotation);
+            GameObject knight = Object.Instantiate(entity, spawnPosition.position, spawnPosition.rotation);
+
+            if (knight.TryGetComponent(out KnightBehaviour knightBehaviour))
+            {
+                knightBehaviour.SetCurator(curator);
+                curator.AddAliveKnight(knightBehaviour);
+            }
         }
     }
     #endregion

@@ -6,11 +6,11 @@ using UnityEngine.AI;
 public sealed class KnightBehaviour : MonoBehaviour
 {
     #region Parameters
-    [SerializeField] private KnightState knightState = KnightState.Return;
-
     private IKnightState knight = null;
-
+    private BattleCurator curator = null;
     private NavMeshAgent agent = null;
+
+    private KnightState knightState;
     #endregion
 
     #region Properties
@@ -23,17 +23,7 @@ public sealed class KnightBehaviour : MonoBehaviour
 
             knight.Close();
 
-            knight = knightState switch
-            {
-                KnightState.Attack => new KnightAttackState(),
-                KnightState.Await => new KnightAwaitState(),
-                KnightState.Chase => new KnightChaseState(),
-                KnightState.Dead => new KnightDeadState(),
-                KnightState.Return => new KnightReturnState(),
-                _ => new KnightAwaitState()
-            };
-
-            knight.Initialize();
+            InitializeState(knightState);
         }
     }
     #endregion
@@ -46,7 +36,9 @@ public sealed class KnightBehaviour : MonoBehaviour
 
     private void Start()
     {
-        InitializeInitialState(knightState);
+        KnightState state = curator.InBattle ? KnightState.Chase : KnightState.Return;
+
+        InitializeState(state);
     }
 
     private void Update()
@@ -56,16 +48,18 @@ public sealed class KnightBehaviour : MonoBehaviour
     #endregion
 
     #region Custom methods
-    private void InitializeInitialState(KnightState state)
+    internal void SetCurator(BattleCurator value) => curator = value;
+
+    private void InitializeState(KnightState state)
     {
         knight = state switch
         {
-            KnightState.Attack => new KnightAttackState(),
-            KnightState.Await => new KnightAwaitState(),
-            KnightState.Chase => new KnightChaseState(),
-            KnightState.Dead => new KnightDeadState(),
-            KnightState.Return => new KnightReturnState(),
-            _ => new KnightAwaitState()
+            KnightState.Attack => new KnightAttackState(this),
+            KnightState.Await => new KnightAwaitState(this),
+            KnightState.Chase => new KnightChaseState(this),
+            KnightState.Dead => new KnightDeadState(this),
+            KnightState.Return => new KnightReturnState(this),
+            _ => new KnightAwaitState(this)
         };
 
         knight.Initialize();
