@@ -5,6 +5,9 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - spawnSettings: {fileID: 11400000, guid: 8297e27d1e23b864681547a80734e363, type: 2}
+  - rallyPointSettings: {fileID: 11400000, guid: eab378934e4aefa4d867180e256b3668,
+      type: 2}
+  - knightRallyPoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

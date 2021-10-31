@@ -1,7 +1,10 @@
+using UnityEngine;
+
 public sealed class KnightBehaviour : EntityBehaviour
 {
     #region Parameters    
     private KnightState knightState;
+    internal Vector3 rallyPointPosition;
     #endregion
 
     #region Properties
@@ -55,7 +58,7 @@ public sealed class KnightBehaviour : EntityBehaviour
             KnightState.Attack => new KnightAttackState(this),
             KnightState.Await => new KnightAwaitState(this),
             KnightState.Chase => new KnightChaseState(this),
-            KnightState.Dead => new KnightDeadState(this),
+            KnightState.Dead => new KnightDeadState(this, curator),
             KnightState.Return => new KnightReturnState(this),
             _ => new KnightAwaitState(this)
         };

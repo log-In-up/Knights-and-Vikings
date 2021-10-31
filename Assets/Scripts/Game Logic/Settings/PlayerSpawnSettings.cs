@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = fileName, menuName = menuName, order = order)]
-public sealed class SpawnSettings : ScriptableObject
+public sealed class PlayerSpawnSettings : ScriptableObject
 {
     #region Create asset menu constants
-    private const string fileName = "Spawn Settings", menuName = "Game settings/Spawn settings";
+    private const string fileName = "Player Spawn Settings", menuName = "Game settings/Player Spawn settings";
     private const int order = 1;
     #endregion
 

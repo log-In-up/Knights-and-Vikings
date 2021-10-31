@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +9,7 @@ public class EntityBehaviour : MonoBehaviour
     #region Parameters
     [SerializeField] private protected EntityCharacteristics characteristics = null;
 
-    private protected NavMeshAgent agent = null;
+    internal NavMeshAgent agent = null;
     private protected BattleCurator curator = null;
     private protected IEntityState entityState = null;
 

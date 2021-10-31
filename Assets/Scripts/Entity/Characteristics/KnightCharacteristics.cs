@@ -9,7 +9,7 @@ public sealed class KnightCharacteristics : EntityCharacteristics
     #endregion
 
     #region Parameters
-
+    
     #endregion
 
     #region Properties

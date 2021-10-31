@@ -16,11 +16,11 @@ public class KnightReturnState : IEntityState
 
     public void Initialize()
     {
-
+        knightBehaviour.agent.SetDestination(knightBehaviour.rallyPointPosition);
     }
 
     public void Update()
     {
-        Debug.Log(knightBehaviour.State);
+
     }
 }
