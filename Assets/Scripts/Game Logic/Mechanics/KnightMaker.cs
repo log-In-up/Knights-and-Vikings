@@ -28,7 +28,7 @@ public sealed class KnightMaker
             if (knight.TryGetComponent(out KnightBehaviour knightBehaviour))
             {
                 knightBehaviour.SetCurator(curator);
-                curator.AddAliveKnight(knightBehaviour);
+                curator.EntityHandler.AddAliveKnight(knightBehaviour);
             }
         }
     }

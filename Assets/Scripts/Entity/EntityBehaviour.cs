@@ -6,16 +6,18 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EntityBehaviour : MonoBehaviour
 {
-    #region Parameters
+    #region Editor parameters
     [SerializeField] private protected EntityCharacteristics characteristics = null;
+    #endregion
 
+    #region Parameters
     internal NavMeshAgent agent = null;
     private protected BattleCurator curator = null;
     private protected IEntityState entityState = null;
 
-    private float healthPoints;
-
     private protected const float noHealthPoints = 0.0f;
+
+    private float healthPoints;
     #endregion
 
     #region Properties

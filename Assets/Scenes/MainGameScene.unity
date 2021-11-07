@@ -154,6 +154,68 @@ Transform:
   m_Father: {fileID: 725585718}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &268084948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268084949}
+  m_Layer: 2
+  m_Name: Viking Spawn Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &268084949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268084948}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 5, y: 0, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1089105567}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &274791800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 274791801}
+  m_Layer: 2
+  m_Name: Viking Spawn Point (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &274791801
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 274791800}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1089105567}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &458783058
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,6 +249,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &593550446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3292370501119917605, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
+    type: 3}
+  m_PrefabInstance: {fileID: 4905911385348583321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &628751261
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,7 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 725585718}
   m_Layer: 0
-  m_Name: Spawn Points
+  m_Name: Knight Spawn Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,6 +419,37 @@ Transform:
   m_Father: {fileID: 2119648963}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &878506733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 878506734}
+  m_Layer: 2
+  m_Name: Viking Spawn Point (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &878506734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878506733}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -5, y: 0, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1089105567}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +565,40 @@ Transform:
   - {fileID: 1248691761}
   m_Father: {fileID: 458783059}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1089105566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1089105567}
+  m_Layer: 2
+  m_Name: Viking Spawn Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1089105567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089105566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 268084949}
+  - {fileID: 274791801}
+  - {fileID: 878506734}
+  m_Father: {fileID: 2119648963}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1248691760
 GameObject:
@@ -590,6 +729,37 @@ Transform:
   m_Father: {fileID: 2119648963}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1935463259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1935463260}
+  m_Layer: 2
+  m_Name: Viking Rally Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1935463260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935463259}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 17.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2119648963}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &2119648962
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +791,8 @@ Transform:
   m_Children:
   - {fileID: 725585718}
   - {fileID: 1490688616}
+  - {fileID: 1089105567}
+  - {fileID: 1935463260}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -636,14 +808,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2912b6b30efc23d4e9b87c0298026538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vikingSpawnSettings: {fileID: 11400000, guid: 8297e27d1e23b864681547a80734e363,
+  knightSpawnSettings: {fileID: 11400000, guid: 8297e27d1e23b864681547a80734e363,
     type: 2}
-  spawnPoints:
+  knightRallyPoint: {fileID: 1490688616}
+  knightSpawnPoints:
   - {fileID: 34280962}
   - {fileID: 628751262}
-  rallyPointSettings: {fileID: 11400000, guid: eab378934e4aefa4d867180e256b3668, type: 2}
-  knightRallyPoint: {fileID: 1490688616}
   enemySpawnSettings: {fileID: 11400000, guid: 16c03ddb1434cc14cb98c7b191e6bf6a, type: 2}
+  vikingRallyPoint: {fileID: 1935463260}
+  vikingSpawnPoints:
+  - {fileID: 268084949}
+  - {fileID: 274791801}
+  - {fileID: 878506734}
+  waveState: {fileID: 4905911385348583322}
+  waveText: {fileID: 593550446}
 --- !u!1001 &4905911385348583321
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -651,106 +829,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 477350541498314561, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 477350541498314561, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 477350541498314561, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 477350541498314561, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 477350541498314561, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 477350541498314561, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1970911228569186328, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
         type: 3}
       propertyPath: m_Name
       value: User Interface
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668196662422094045, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668196662422094045, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668196662422094045, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668196662422094045, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668196662422094045, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2668196662422094045, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3044832327559572850, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2119648965}
-    - target: {fileID: 4899751590421929571, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899751590421929571, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899751590421929571, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899751590421929571, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899751590421929571, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4899751590421929571, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5773631364167820867, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -866,5 +954,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9002712431112876348, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2119648965}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f460c2bdb5cba2c4aa6fb702b3f8c500, type: 3}
+--- !u!114 &4905911385348583322 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1570319165475832555, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
+    type: 3}
+  m_PrefabInstance: {fileID: 4905911385348583321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -15,12 +15,12 @@ public sealed class VikingDeadState : IEntityState
 
     public void Close()
     {
-        curator.AddAliveViking(vikingBehaviour);
+        curator.EntityHandler.AddAliveViking(vikingBehaviour);
     }
 
     public void Initialize()
     {
-        curator.AddDeadViking(vikingBehaviour);
+        curator.EntityHandler.AddDeadViking(vikingBehaviour);
     }
 
     public void Update()

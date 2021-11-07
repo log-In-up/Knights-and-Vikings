@@ -11,12 +11,12 @@ public class KnightDeadState : IEntityState
 
     public void Close()
     {
-        curator.AddAliveKnight(knightBehaviour);
+        curator.EntityHandler.AddAliveKnight(knightBehaviour);
     }
 
     public void Initialize()
     {
-        curator.AddDeadKnight(knightBehaviour);
+        curator.EntityHandler.AddDeadKnight(knightBehaviour);
     }
 
     public void Update()

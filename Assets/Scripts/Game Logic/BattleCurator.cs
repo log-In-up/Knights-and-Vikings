@@ -1,110 +1,122 @@
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 public sealed class BattleCurator : MonoBehaviour
 {
-    #region Parameters
+    #region Editor parameters
     [Header("Knights spawn settings")]
-    [SerializeField] private PlayerSpawnSettings vikingSpawnSettings = null;
-    [SerializeField] private Transform[] spawnPoints = null;
-    [SerializeField] private RallyPointSettings rallyPointSettings = null;
+    [SerializeField] private PlayerSpawnSettings knightSpawnSettings = null;
     [SerializeField] private Transform knightRallyPoint = null;
+    [SerializeField] private Transform[] knightSpawnPoints = null;
 
     [Header("Vikings spawn settings")]
     [SerializeField] private EnemySpawnSettings enemySpawnSettings = null;
+    [SerializeField] private Transform vikingRallyPoint = null;
+    [SerializeField] private Transform[] vikingSpawnPoints = null;
 
+    [Header("Other components")]
+    [SerializeField] private Slider waveState = null;
+    [SerializeField] private TextMeshProUGUI waveText = null;
+    #endregion
+
+    #region Parameters
     private bool inBattle;
+    private float nextSpawnTime;
+    private int currentWave, levelTokens;
 
+    private VikingMaker vikingMaker = null;
     private KnightMaker knightMaker = null;
     private KnightRallyPoint rallyPoint = null;
+    private EntityHandler entityHandler = null;
 
-    private List<KnightBehaviour> aliveKnights = null, deadKnights = null;
-    private List<VikingBehaviour> aliveVikings = null, deadVikings = null;
+    private const int lackOfTokens = 0, lackOfOpponents = 0;
     #endregion
 
     #region Properties
     public bool InBattle => inBattle;
+    public EntityHandler EntityHandler => entityHandler;
     #endregion
 
     #region MonoBehaviour API
+    private void Awake()
+    {
+        vikingMaker = new VikingMaker(this, vikingSpawnPoints);
+        knightMaker = new KnightMaker(this, knightSpawnPoints);
+        rallyPoint = new KnightRallyPoint(knightRallyPoint, knightSpawnSettings);
+        entityHandler = new EntityHandler(rallyPoint);
+    }
+
     private void Start()
     {
+        nextSpawnTime = Time.time;
+
+        waveState.wholeNumbers = true;
+        waveState.minValue = lackOfOpponents;
+
+        SetCurrentWave(3);
+
         inBattle = false;
+    }
 
-        knightMaker = new KnightMaker(this, spawnPoints);
-        rallyPoint = new KnightRallyPoint(knightRallyPoint, rallyPointSettings);
-
-        aliveKnights = new List<KnightBehaviour>();
-        aliveVikings = new List<VikingBehaviour>();
-        deadKnights = new List<KnightBehaviour>();
-        deadVikings = new List<VikingBehaviour>();
+    private void Update()
+    {
+        if (inBattle == true)
+        {
+            TrackingAndCreatingVikings();
+        }
     }
     #endregion
 
-    #region Custom methods
-    internal void AddAliveKnight(KnightBehaviour knight)
+    #region Methods
+    private void TrackingAndCreatingVikings()
     {
-        if (deadKnights.Contains(knight))
+        if (entityHandler.GetAliveVikingsCount() < enemySpawnSettings.SimultaneousCount)
         {
-            deadKnights.Remove(knight);
+            if (levelTokens > lackOfTokens && Time.time > nextSpawnTime)
+            {
+                vikingMaker.SpawnViking(enemySpawnSettings.Shooter);
+
+                levelTokens--;
+                nextSpawnTime = Time.time + enemySpawnSettings.SpawnDelay;
+            }
         }
-        aliveKnights.Add(knight);
-
-        SetRallyPoints();
     }
 
-    internal void AddAliveViking(VikingBehaviour viking)
+    private void SetCurrentWave(int wave)
     {
-        if (deadVikings.Contains(viking))
-        {
-            deadVikings.Remove(viking);
-        }
-        aliveVikings.Add(viking);
-    }
+        currentWave = wave;
 
-    internal void AddDeadKnight(KnightBehaviour knight)
-    {
-        aliveKnights.Remove(knight);
-        deadKnights.Add(knight);
+        float newWave = Mathf.Sqrt(currentWave);
+        levelTokens = (int)Mathf.Round(newWave);
 
-        SetRallyPoints();
-    }
+        waveState.maxValue = levelTokens;
+        waveState.value = levelTokens;
 
-    internal void AddDeadViking(VikingBehaviour viking)
-    {
-        aliveVikings.Remove(viking);
-        deadVikings.Add(viking);
-    }
-
-    private void SetRallyPoints()
-    {
-        int count = aliveKnights.Count;
-
-        Vector3[] positions = rallyPoint.GetPointsForPlacement(count);
-
-        for (int index = 0; index < count; index++)
-        {
-            aliveKnights[index].rallyPointPosition = positions[index];
-        }
+        waveText.text = $"Wave: {currentWave}";
     }
     #endregion
 
     #region Button handlers
     public void CreateShooters()
     {
-        knightMaker.CreateEntities(vikingSpawnSettings.Shooter, vikingSpawnSettings.ShooterSpawnCount);
+        knightMaker.CreateEntities(knightSpawnSettings.Shooter, knightSpawnSettings.ShooterSpawnCount);
     }
 
     public void CreateSwordsmen()
     {
-        knightMaker.CreateEntities(vikingSpawnSettings.Swordsman, vikingSpawnSettings.SwordsmanSpawnCount);
+        knightMaker.CreateEntities(knightSpawnSettings.Swordsman, knightSpawnSettings.SwordsmanSpawnCount);
     }
 
     public void CreateTwoHandedSwordsmen()
     {
-        knightMaker.CreateEntities(vikingSpawnSettings.TwoHandedSwordsman, vikingSpawnSettings.TwoHandedSwordsmanSpawnCount);
+        knightMaker.CreateEntities(knightSpawnSettings.TwoHandedSwordsman, knightSpawnSettings.TwoHandedSwordsmanSpawnCount);
+    }
+
+    public void StartBattle()
+    {
+        inBattle = true;
     }
     #endregion
 }

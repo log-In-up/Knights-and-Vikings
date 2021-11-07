@@ -21,6 +21,6 @@ public class KnightChaseState : IEntityState
 
     public void Update()
     {
-        Debug.Log(knightBehaviour.State);
+        
     }
 }

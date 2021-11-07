@@ -2,18 +2,22 @@
 
 public sealed class KnightRallyPoint
 {
+    #region Parameters
     private readonly Transform rallyPoint = null;
-    private readonly RallyPointSettings pointSettings = null;
+    private readonly PlayerSpawnSettings pointSettings = null;
 
-    private const float startOffsetValue = 0.0f, inventor = -1.0f;
+    private const float startOffsetValue = 0.0f, invertor = -1.0f;
     private const int startCount = 0;
+    #endregion
 
-    public KnightRallyPoint(Transform rallyPoint, RallyPointSettings pointSettings)
+    public KnightRallyPoint(Transform rallyPoint, PlayerSpawnSettings pointSettings)
     {
         this.rallyPoint = rallyPoint;
         this.pointSettings = pointSettings;
     }
 
+    #region Custom methods
+    
     public Vector3[] GetPointsForPlacement(int count)
     {
         Vector3[] points = new Vector3[count];
@@ -36,18 +40,16 @@ public sealed class KnightRallyPoint
             {
                 if (startOffsetValue > horizontalOffset)
                 {
-                    horizontalOffset *= inventor;
+                    horizontalOffset *= invertor;
                 }
-
                 horizontalOffset += pointSettings.HorizontalInterval;
-
-                isOnRight = false;
             }
             else
             {
-                horizontalOffset *= inventor;
-                isOnRight = true;
+                horizontalOffset *= invertor;
             }
+
+            isOnRight = !isOnRight;
 
             if (countInLine >= pointSettings.CountInLine)
             {
@@ -62,4 +64,5 @@ public sealed class KnightRallyPoint
 
         return points;
     }
+    #endregion
 }

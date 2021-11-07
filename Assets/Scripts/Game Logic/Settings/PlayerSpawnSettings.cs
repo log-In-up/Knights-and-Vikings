@@ -21,6 +21,11 @@ public sealed class PlayerSpawnSettings : ScriptableObject
     [Header("Two-Handed Swordsman spawn settings")]
     [SerializeField] private GameObject twoHandedSwordsman = null;
     [SerializeField, Min(0)] private int twoHandedSwordsmanSpawnCount = 1;
+
+    [Header("Rally point settings")]
+    [SerializeField, Min(1)] private int countInLine = 5;
+    [SerializeField, Min(0.0f)] private float horizontalInterval = 1.0f;
+    [SerializeField, Min(0.0f)] private float verticalInterval = 1.0f;
 #pragma warning restore IDE0044
     #endregion
 
@@ -32,5 +37,9 @@ public sealed class PlayerSpawnSettings : ScriptableObject
     public int ShooterSpawnCount => shooterSpawnCount;
     public int SwordsmanSpawnCount => swordsmanSpawnCount;
     public int TwoHandedSwordsmanSpawnCount => twoHandedSwordsmanSpawnCount;
+
+    public float HorizontalInterval => horizontalInterval;
+    public float VerticalInterval => verticalInterval;
+    public int CountInLine => countInLine;
     #endregion
 }
