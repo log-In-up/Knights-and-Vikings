@@ -1,9 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public sealed class VikingAttackBaseState : IEntityState
 {
+    #region Parameters
+
+    #endregion
+
+    public VikingAttackBaseState()
+    {
+
+    }
+
+    #region Interface implementation
+    public void Act()
+    {
+
+    }
+
     public void Close()
     {
 
@@ -14,8 +25,18 @@ public sealed class VikingAttackBaseState : IEntityState
 
     }
 
-    public void Update()
+    public void Sense()
     {
 
     }
+
+    public void Think()
+    {
+
+    }
+    #endregion
+
+    #region Methods
+
+    #endregion
 }

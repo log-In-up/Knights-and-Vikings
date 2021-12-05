@@ -1,46 +1,80 @@
-using System.Collections;
-using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine;
 
 [DisallowMultipleComponent]
 [RequireComponent(typeof(NavMeshAgent))]
 public class EntityBehaviour : MonoBehaviour
 {
     #region Editor parameters
-    [SerializeField] private protected EntityCharacteristics characteristics = null;
+    [SerializeField] private EntityCharacteristics characteristics = null;
+    [SerializeField] private EntitySubtype entitySubtype = EntitySubtype.Shooter;
     #endregion
 
     #region Parameters
     internal NavMeshAgent agent = null;
+    internal EntityBehaviour enemy = null;
+
+    private EntityTargetSelector targetSelector = null;
+    private float healthPoints;
+
     private protected BattleCurator curator = null;
     private protected IEntityState entityState = null;
 
     private protected const float noHealthPoints = 0.0f;
-
-    private float healthPoints;
     #endregion
 
     #region Properties
     public virtual float HealthPoints
     {
         get => healthPoints;
-        set => healthPoints = value;
+        set
+        {
+            healthPoints = value;
+
+            Debug.Log($"Name: {name} has {healthPoints}");
+        }
     }
+
+    public BattleCurator BattleCurator
+    {
+        get => curator;
+        set => curator = value;
+    }
+
+    public EntitySubtype EntitySubtype => entitySubtype;
+    public EntityCharacteristics EntityCharacteristics => characteristics;
     #endregion
 
     #region MonoBehaviour API
-    private void Awake()
+    protected virtual void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+
+        targetSelector = new EntityTargetSelector(this);
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         HealthPoints = characteristics.HealthPoints;
     }
+
+    protected virtual void Update()
+    {
+        entityState.Update();
+    }
     #endregion
 
-    #region Custom methods
-    internal void SetCurator(BattleCurator value) => curator = value;
+    #region Methods
+    public EntityBehaviour SetTarget(EntityType entityType)
+    {
+        return targetSelector.SetTarget(entityType);
+    }
+
+    public void CauseDamage(float damageAmount)
+    {
+        enemy.HealthPoints -= damageAmount;
+
+        Debug.Log($"Name: {name} deal {damageAmount}");
+    }
     #endregion
 }

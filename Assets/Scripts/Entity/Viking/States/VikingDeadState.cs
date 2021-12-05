@@ -1,16 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public sealed class VikingDeadState : IEntityState
 {
+    #region Parameters
     private readonly VikingBehaviour vikingBehaviour;
     private readonly BattleCurator curator;
+    #endregion
 
     public VikingDeadState(VikingBehaviour vikingBehaviour, BattleCurator curator)
     {
         this.vikingBehaviour = vikingBehaviour;
         this.curator = curator;
+    }
+
+    #region Interface implementation
+    public void Act()
+    {
+
     }
 
     public void Close()
@@ -23,8 +27,18 @@ public sealed class VikingDeadState : IEntityState
         curator.EntityHandler.AddDeadViking(vikingBehaviour);
     }
 
-    public void Update()
+    public void Sense()
     {
 
     }
+
+    public void Think()
+    {
+
+    }
+    #endregion
+
+    #region Methods
+
+    #endregion
 }

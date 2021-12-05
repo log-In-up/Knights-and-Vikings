@@ -10,6 +10,11 @@ public sealed class EntityHandler
     private readonly KnightRallyPoint rallyPoint = null;
     #endregion
 
+    #region Properties
+    public List<KnightBehaviour> AliveKnights => aliveKnights;
+    public List<VikingBehaviour> AliveVikings => aliveVikings;
+    #endregion
+
     public EntityHandler(KnightRallyPoint rallyPoint)
     {
         this.rallyPoint = rallyPoint;
@@ -20,7 +25,35 @@ public sealed class EntityHandler
         deadVikings = new List<VikingBehaviour>();
     }
 
-    #region Custom methods
+    #region Methods
+    public List<EntityBehaviour> GetListOfSpecificEntities(EntitySubtype subtype, EntityType type)
+    {
+        List<EntityBehaviour> entities = new(), necessaryEntities = new();
+
+        switch (type)
+        {
+            case EntityType.Knight:
+                entities.AddRange(aliveKnights);
+                break;
+            case EntityType.Viking:
+                entities.AddRange(aliveVikings);
+                break;
+            default:
+                entities.AddRange(aliveKnights);
+                break;
+        }
+
+        foreach (EntityBehaviour entity in entities)
+        {
+            if (entity.EntitySubtype == subtype)
+            {
+                necessaryEntities.Add(entity);
+            }
+        }
+
+        return necessaryEntities;
+    }
+
     internal void AddAliveKnight(KnightBehaviour knight)
     {
         if (deadKnights.Contains(knight))
@@ -54,8 +87,6 @@ public sealed class EntityHandler
         aliveVikings.Remove(viking);
         deadVikings.Add(viking);
     }
-
-    internal int GetAliveVikingsCount() => aliveVikings.Count;
 
     private void SetRallyPoints()
     {

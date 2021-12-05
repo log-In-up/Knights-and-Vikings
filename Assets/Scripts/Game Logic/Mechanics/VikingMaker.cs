@@ -25,6 +25,7 @@ public sealed class VikingMaker
 
         if (vikingEntity.TryGetComponent(out VikingBehaviour vikingBehaviour))
         {
+            vikingBehaviour.BattleCurator = curator;
             curator.EntityHandler.AddAliveViking(vikingBehaviour);
         }
     }

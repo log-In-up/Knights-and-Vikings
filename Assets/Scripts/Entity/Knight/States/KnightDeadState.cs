@@ -1,12 +1,20 @@
-public class KnightDeadState : IEntityState
+public sealed class KnightDeadState : IEntityState
 {
+    #region Parameters
     private readonly KnightBehaviour knightBehaviour = null;
     private readonly BattleCurator curator;
+    #endregion
 
     public KnightDeadState(KnightBehaviour knightBehaviour, BattleCurator curator)
     {
         this.knightBehaviour = knightBehaviour;
         this.curator = curator;
+    }
+
+    #region Interface implementation
+    public void Act()
+    {
+
     }
 
     public void Close()
@@ -19,8 +27,18 @@ public class KnightDeadState : IEntityState
         curator.EntityHandler.AddDeadKnight(knightBehaviour);
     }
 
-    public void Update()
+    public void Sense()
     {
 
     }
+
+    public void Think()
+    {
+
+    }
+    #endregion
+
+    #region Methods
+
+    #endregion
 }

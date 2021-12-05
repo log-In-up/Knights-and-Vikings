@@ -37,9 +37,9 @@ public sealed class PlayerSpawnSettings : ScriptableObject
     public int ShooterSpawnCount => shooterSpawnCount;
     public int SwordsmanSpawnCount => swordsmanSpawnCount;
     public int TwoHandedSwordsmanSpawnCount => twoHandedSwordsmanSpawnCount;
+    public int CountInLine => countInLine;
 
     public float HorizontalInterval => horizontalInterval;
     public float VerticalInterval => verticalInterval;
-    public int CountInLine => countInLine;
     #endregion
 }

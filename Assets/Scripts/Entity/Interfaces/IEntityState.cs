@@ -1,6 +1,14 @@
-internal interface IEntityState 
+internal interface IEntityState
 {
+    void Act();
     void Close();
     void Initialize();
-    void Update();
+    void Sense();
+    void Think();
+    void Update()
+    {
+        Sense();
+        Think();
+        Act();
+    }
 }

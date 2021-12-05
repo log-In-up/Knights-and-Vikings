@@ -4,6 +4,7 @@ public sealed class KnightBehaviour : EntityBehaviour
 {
     #region Parameters    
     private KnightState knightState;
+
     internal Vector3 rallyPointPosition;
     #endregion
 
@@ -32,35 +33,39 @@ public sealed class KnightBehaviour : EntityBehaviour
             entityState.Close();
 
             InitializeState(knightState);
+
+            Debug.Log($"Knight change own state to {knightState}");
         }
     }
     #endregion
 
     #region MonoBehaviour API
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         KnightState state = curator.InBattle ? KnightState.Chase : KnightState.Return;
 
         InitializeState(state);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        entityState.Update();
+        base.Update();
     }
     #endregion
 
-    #region Custom methods
+    #region Methods
     private void InitializeState(KnightState state)
     {
         entityState = state switch
         {
-            KnightState.Attack => new KnightAttackState(this),
-            KnightState.Await => new KnightAwaitState(this),
-            KnightState.Chase => new KnightChaseState(this),
+            KnightState.Attack => new KnightAttackState(this, EntityCharacteristics.AttackInterval, EntityCharacteristics.Damage),
+            KnightState.Await => new KnightAwaitState(this, EntityCharacteristics.AwaitingTime),
+            KnightState.Chase => new KnightChaseState(this, EntityCharacteristics.AttackRange),
             KnightState.Dead => new KnightDeadState(this, curator),
             KnightState.Return => new KnightReturnState(this),
-            _ => new KnightAwaitState(this)
+            _ => throw new System.NotImplementedException()
         };
 
         entityState.Initialize();

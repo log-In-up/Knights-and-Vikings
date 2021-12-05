@@ -1,6 +1,6 @@
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
 
 [DisallowMultipleComponent]
 public sealed class BattleCurator : MonoBehaviour
@@ -13,7 +13,6 @@ public sealed class BattleCurator : MonoBehaviour
 
     [Header("Vikings spawn settings")]
     [SerializeField] private EnemySpawnSettings enemySpawnSettings = null;
-    [SerializeField] private Transform vikingRallyPoint = null;
     [SerializeField] private Transform[] vikingSpawnPoints = null;
 
     [Header("Other components")]
@@ -26,24 +25,46 @@ public sealed class BattleCurator : MonoBehaviour
     private float nextSpawnTime;
     private int currentWave, levelTokens;
 
-    private VikingMaker vikingMaker = null;
+    private EntityHandler entityHandler = null;
     private KnightMaker knightMaker = null;
     private KnightRallyPoint rallyPoint = null;
-    private EntityHandler entityHandler = null;
+    private VikingMaker vikingMaker = null;
 
-    private const int lackOfTokens = 0, lackOfOpponents = 0;
+    private const int lackOfTokens = 0, lackOfOpponents = 0, firstWave = 0;
     #endregion
 
     #region Properties
     public bool InBattle => inBattle;
+
+    public int CurrentWave
+    {
+        get => currentWave;
+        set
+        {
+            if (value >= firstWave)
+            {
+                currentWave = value;
+
+                float newWave = Mathf.Sqrt(currentWave);
+                levelTokens = (int)Mathf.Round(newWave);
+
+                waveState.maxValue = levelTokens;
+                waveState.value = levelTokens;
+
+                waveText.text = $"Wave: {currentWave}";
+            }
+        }
+    }
+
     public EntityHandler EntityHandler => entityHandler;
     #endregion
 
     #region MonoBehaviour API
     private void Awake()
     {
-        vikingMaker = new VikingMaker(this, vikingSpawnPoints);
         knightMaker = new KnightMaker(this, knightSpawnPoints);
+        vikingMaker = new VikingMaker(this, vikingSpawnPoints);
+
         rallyPoint = new KnightRallyPoint(knightRallyPoint, knightSpawnSettings);
         entityHandler = new EntityHandler(rallyPoint);
     }
@@ -55,7 +76,7 @@ public sealed class BattleCurator : MonoBehaviour
         waveState.wholeNumbers = true;
         waveState.minValue = lackOfOpponents;
 
-        SetCurrentWave(3);
+        CurrentWave = 3;
 
         inBattle = false;
     }
@@ -72,7 +93,7 @@ public sealed class BattleCurator : MonoBehaviour
     #region Methods
     private void TrackingAndCreatingVikings()
     {
-        if (entityHandler.GetAliveVikingsCount() < enemySpawnSettings.SimultaneousCount)
+        if (entityHandler.AliveVikings.Count < enemySpawnSettings.SimultaneousCount)
         {
             if (levelTokens > lackOfTokens && Time.time > nextSpawnTime)
             {
@@ -82,19 +103,6 @@ public sealed class BattleCurator : MonoBehaviour
                 nextSpawnTime = Time.time + enemySpawnSettings.SpawnDelay;
             }
         }
-    }
-
-    private void SetCurrentWave(int wave)
-    {
-        currentWave = wave;
-
-        float newWave = Mathf.Sqrt(currentWave);
-        levelTokens = (int)Mathf.Round(newWave);
-
-        waveState.maxValue = levelTokens;
-        waveState.value = levelTokens;
-
-        waveText.text = $"Wave: {currentWave}";
     }
     #endregion
 

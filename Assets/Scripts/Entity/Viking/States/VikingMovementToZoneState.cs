@@ -1,9 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class VikingMovementToZoneState : IEntityState
+public sealed class VikingMovementToZoneState : IEntityState
 {
+    #region Parameters
+
+    #endregion
+
+    public VikingMovementToZoneState()
+    {
+
+    }
+
+    #region Interface implementation
+    public void Act()
+    {
+
+    }
+
     public void Close()
     {
 
@@ -14,8 +25,18 @@ public class VikingMovementToZoneState : IEntityState
 
     }
 
-    public void Update()
+    public void Sense()
     {
 
     }
+
+    public void Think()
+    {
+
+    }
+    #endregion
+
+    #region Methods
+
+    #endregion
 }

@@ -1,17 +1,23 @@
-using UnityEngine;
-
-public class KnightReturnState : IEntityState
+public sealed class KnightReturnState : IEntityState
 {
+    #region Parameters
     private readonly KnightBehaviour knightBehaviour = null;
+    #endregion
 
     public KnightReturnState(KnightBehaviour knightBehaviour)
     {
         this.knightBehaviour = knightBehaviour;
     }
 
-    public void Close()
+    #region Interface implementation
+    public void Act()
     {
 
+    }
+
+    public void Close()
+    {
+        knightBehaviour.agent.ResetPath();
     }
 
     public void Initialize()
@@ -19,8 +25,18 @@ public class KnightReturnState : IEntityState
         knightBehaviour.agent.SetDestination(knightBehaviour.rallyPointPosition);
     }
 
-    public void Update()
+    public void Sense()
     {
 
     }
+
+    public void Think()
+    {
+
+    }
+    #endregion
+
+    #region Methods
+
+    #endregion
 }
