@@ -1,36 +1,43 @@
+using Entity.Behaviours;
 using UnityEngine;
 
-public sealed class KnightMaker
+namespace GameLogic.Mechanics
 {
-    #region Parameters
-    private readonly BattleCurator curator = null;
-    private readonly Transform[] spawnPoints = null;
-    #endregion
-
-    public KnightMaker(BattleCurator curator, Transform[] spawnPoints)
+    public sealed class KnightMaker : EntityMaker
     {
-        this.curator = curator;
-        this.spawnPoints = spawnPoints;
-    }
+        #region Parameters
 
-    #region Custom methods
-    internal void CreateEntities(GameObject entity, int count)
-    {
-        int spawnIndex = 0;
+        #endregion
 
-        for (int index = 0; index < count; index++)
+        public KnightMaker(BattleCurator curator, Transform[] spawnPoints) : base(curator, spawnPoints)
         {
-            Transform spawnPosition = spawnPoints[spawnIndex];
-            spawnIndex = ++spawnIndex % spawnPoints.Length;
 
-            GameObject knight = Object.Instantiate(entity, spawnPosition.position, spawnPosition.rotation);
+        }
 
-            if (knight.TryGetComponent(out KnightBehaviour knightBehaviour))
+        #region Custom methods
+        internal void CreateKnights(GameObject knight, int count)
+        {
+            int spawnIndex = 0;
+
+            for (int index = 0; index < count; index++)
             {
-                knightBehaviour.BattleCurator = curator;
-                curator.EntityHandler.AddAliveKnight(knightBehaviour);
+                Transform spawnPosition = spawnPoints[spawnIndex];
+                spawnIndex = ++spawnIndex % spawnPoints.Length;
+
+                GameObject knightEntity = Object.Instantiate(knight, spawnPosition.position, spawnPosition.rotation);
+
+                if (knightEntity.TryGetComponent(out KnightBehaviour knightBehaviour))
+                {
+                    knightBehaviour.BattleCurator = curator;
+
+                    curator.EntityHandler.AddAliveKnight(knightBehaviour);
+                }
+                else
+                {
+                    Debug.LogError($"Object ({knight.name}) does not contain KnightBehaviour script.");
+                }
             }
         }
+        #endregion
     }
-    #endregion
 }

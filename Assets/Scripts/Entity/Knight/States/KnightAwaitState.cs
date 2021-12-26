@@ -1,56 +1,65 @@
+using Entity.Behaviours;
+using Entity.Characteristics;
+using Entity.Enums;
+using Entity.Interfaces;
 using UnityEngine;
 
-public sealed class KnightAwaitState : IEntityState
+namespace Entity.States
 {
-    #region Parameters
-    private readonly KnightBehaviour knightBehaviour = null;
-    private readonly float awaitingTime;
-
-    private bool canReturn;
-    private float initializeTime;
-    #endregion
-
-    public KnightAwaitState(KnightBehaviour knightBehaviour, float awaitingTime)
+    public sealed class KnightAwaitState : IEntityState
     {
-        this.knightBehaviour = knightBehaviour;
-        this.awaitingTime = awaitingTime;
-    }
+        #region Parameters
+        private bool canReturn;
+        private float initializeTime;
 
-    #region Interface implementation
-    public void Act()
-    {
-        Expect();
-    }
+        private readonly KnightBehaviour knightBehaviour = null;
+        private readonly float awaitingTime;
+        #endregion
 
-    public void Close()
-    {
-
-    }
-
-    public void Initialize()
-    {
-        initializeTime = Time.time;
-        canReturn = false;
-    }
-
-    public void Sense()
-    {
-
-    }
-
-    public void Think()
-    {
-        canReturn = Time.time >= initializeTime + awaitingTime;
-    }
-    #endregion
-
-    #region Methods
-    private void Expect()
-    {
-        if (canReturn)
+        public KnightAwaitState(KnightBehaviour knightBehaviour, EntityCharacteristics characteristics)
         {
-            knightBehaviour.State = KnightState.Return;
+            this.knightBehaviour = knightBehaviour;
+
+            awaitingTime = characteristics.AwaitingTime;
         }
+
+        #region Interface implementation
+        public void Act()
+        {
+            Expect();
+        }
+
+        public void Close()
+        {
+
+        }
+
+        public void Initialize()
+        {
+            canReturn = false;
+
+            initializeTime = Time.time;
+        }
+
+        public void Sense()
+        {
+
+        }
+
+        public void Think()
+        {
+            canReturn = Time.time >= initializeTime + awaitingTime;
+        }
+        #endregion
+
+        #region Methods
+        private void Expect()
+        {
+            if (canReturn)
+            {
+                knightBehaviour.State = KnightState.Return;
+            }
+        }
+        #endregion
     }
-    #endregion
 }

@@ -1,5 +1,8 @@
-public enum EntityType
+namespace Entity.Enums
 {
-    Knight,
-    Viking
+    public enum EntityType
+    {
+        Knight,
+        Viking
+    }
 }

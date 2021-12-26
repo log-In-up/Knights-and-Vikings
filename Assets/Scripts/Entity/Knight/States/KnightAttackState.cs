@@ -1,90 +1,99 @@
+using Entity.Behaviours;
+using Entity.Characteristics;
+using Entity.Enums;
+using Entity.Interfaces;
 using UnityEngine;
 
-public sealed class KnightAttackState : IEntityState
+namespace Entity.States
 {
-    #region Parameters
-    private readonly KnightBehaviour knightBehaviour = null;
-    private readonly float attackInterval, damageAmount;
-
-    private bool canAttack;
-    private float attackTime;
-
-    private const float noHealthPoints = 0.0f;
-    private const int absenceVikings = 0;
-
-    private bool enemyIsDead, enemyIsOnTheBattlefield;
-    #endregion
-
-    public KnightAttackState(KnightBehaviour knightBehaviour, float attackInterval, float damageAmount)
+    public sealed class KnightAttackState : IEntityState
     {
-        this.knightBehaviour = knightBehaviour;
-        this.attackInterval = attackInterval;
-        this.damageAmount = damageAmount;
-    }
+        #region Parameters
+        private bool canAttack, canChase, enemyIsDead, enemyIsOnTheBattlefield;
+        private float attackTime, distanceBetweenSelfAndEnemy;
 
-    #region Interface implementation
-    public void Act()
-    {
-        AttackTarget();
-    }
+        private readonly float attackInterval, attackRange, damageAmount;
+        private readonly KnightBehaviour knightBehaviour = null;
 
-    public void Close()
-    {
+        private const float noHealthPoints = 0.0f;
+        private const int absenceVikings = 0;
+        #endregion
 
-    }
-
-    public void Initialize()
-    {
-        canAttack = false;
-        attackTime = Time.time;
-    }
-
-    public void Sense()
-    {
-        enemyIsDead = knightBehaviour.enemy.HealthPoints <= noHealthPoints;
-        enemyIsOnTheBattlefield = knightBehaviour.BattleCurator.EntityHandler.AliveVikings.Count > absenceVikings;
-    }
-
-    public void Think()
-    {
-        canAttack = Time.time >= attackTime; 
-        
-        CheckTarget();
-    }
-    #endregion
-
-    #region Methods
-    private void AttackTarget()
-    {
-        if (canAttack)
+        public KnightAttackState(KnightBehaviour knightBehaviour, EntityCharacteristics characteristics)
         {
-            knightBehaviour.CauseDamage(damageAmount);
+            this.knightBehaviour = knightBehaviour;
 
-            attackTime += attackInterval;
+            attackInterval = characteristics.AttackInterval;
+            attackRange = characteristics.AttackRange;
+            damageAmount = characteristics.Damage;
         }
-    }
 
-    private void CheckTarget()
-    {
-        if (enemyIsDead)
+        #region Interface implementation
+        public void Act()
         {
-            if (enemyIsOnTheBattlefield)
+            CheckTarget();
+
+            AttackTarget();
+        }
+
+        public void Close()
+        {
+
+        }
+
+        public void Initialize()
+        {
+            canAttack = canChase = enemyIsDead = enemyIsOnTheBattlefield = false;
+
+            attackTime = Time.time;
+        }
+
+        public void Sense()
+        {
+            distanceBetweenSelfAndEnemy = Vector3.Distance(knightBehaviour.transform.position, knightBehaviour.enemy.transform.position);
+        }
+
+        public void Think()
+        {
+            enemyIsDead = knightBehaviour.enemy.HealthPoints <= noHealthPoints;
+            enemyIsOnTheBattlefield = knightBehaviour.BattleCurator.EntityHandler.AliveVikings.Count > absenceVikings;
+
+            canChase = distanceBetweenSelfAndEnemy > attackRange;
+
+            canAttack = Time.time >= attackTime;
+        }
+        #endregion
+
+        #region Methods
+        private void AttackTarget()
+        {
+            if (canAttack)
             {
-                knightBehaviour.enemy = knightBehaviour.SetTarget(EntityType.Viking);
+                knightBehaviour.CauseDamage(new DamageInfo(damageAmount));
 
-                float attackRange = knightBehaviour.EntityCharacteristics.AttackRange;
-                float distanceBetweenSelfAndEnemy = Vector3.Distance(knightBehaviour.transform.position, knightBehaviour.enemy.transform.position);
+                attackTime += attackInterval;
+            }
+        }
 
-                if (distanceBetweenSelfAndEnemy > attackRange)
+        private void CheckTarget()
+        {
+            if (enemyIsDead)
+            {
+                if (enemyIsOnTheBattlefield)
                 {
-                    knightBehaviour.State = KnightState.Chase;
+                    knightBehaviour.enemy = knightBehaviour.SetTarget(EntityType.Viking);
+                }
+                else
+                {
+                    knightBehaviour.State = KnightState.Await;
                 }
             }
-            else
+
+            if (canChase)
             {
-                knightBehaviour.State = KnightState.Await;
+                knightBehaviour.State = KnightState.Chase;
             }
         }
+        #endregion
     }
-    #endregion
 }

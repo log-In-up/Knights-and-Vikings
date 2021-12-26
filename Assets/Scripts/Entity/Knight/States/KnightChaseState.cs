@@ -1,66 +1,76 @@
+using Entity.Behaviours;
+using Entity.Characteristics;
+using Entity.Enums;
+using Entity.Interfaces;
 using UnityEngine;
 
-public sealed class KnightChaseState : IEntityState
+namespace Entity.States
 {
-    #region Parameters
-    private readonly float attackRange;
-
-    private readonly KnightBehaviour knightBehaviour = null;
-
-    private bool canAttack;
-    private float distanceToTarget;
-    #endregion
-
-    public KnightChaseState(KnightBehaviour knightBehaviour, float attackRange)
+    public sealed class KnightChaseState : IEntityState
     {
-        this.knightBehaviour = knightBehaviour;
-        this.attackRange = attackRange;        
-    }
+        #region Parameters
+        private readonly float attackRange;
 
-    #region Interface implementation
-    public void Act()
-    {
-        StartAttackTarget();
-    }
+        private readonly KnightBehaviour knightBehaviour = null;
 
-    public void Close()
-    {
-        knightBehaviour.agent.ResetPath();
-    }
+        private bool canAttack;
+        private float distanceToTarget;
 
-    public void Initialize()
-    {
-        SetDestination();
+        private const float initialDistanceToTarget = 0.0f;
+        #endregion
 
-        canAttack = false;
-        distanceToTarget = 0.0f;
-    }
-
-    public void Sense()
-    {
-        distanceToTarget = Vector3.Distance(knightBehaviour.transform.position, knightBehaviour.enemy.transform.position);
-    }
-
-    public void Think()
-    {
-        canAttack = distanceToTarget <= attackRange;        
-    }
-    #endregion
-
-    #region Methods
-    private void StartAttackTarget()
-    {
-        if (canAttack)
+        public KnightChaseState(KnightBehaviour knightBehaviour, EntityCharacteristics characteristics)
         {
-            knightBehaviour.State = KnightState.Attack;
+            this.knightBehaviour = knightBehaviour;
+
+            attackRange = characteristics.AttackRange;
         }
-    }
 
-    private void SetDestination()
-    {
-        knightBehaviour.enemy = knightBehaviour.SetTarget(EntityType.Viking);
+        #region Interface implementation
+        public void Act()
+        {
+            StartAttackTarget();
+        }
 
-        knightBehaviour.agent.SetDestination(knightBehaviour.enemy.transform.position);
+        public void Close()
+        {
+            knightBehaviour.agent.ResetPath();
+        }
+
+        public void Initialize()
+        {
+            SetDestination();
+
+            canAttack = false;
+            distanceToTarget = initialDistanceToTarget;
+        }
+
+        public void Sense()
+        {
+            distanceToTarget = Vector3.Distance(knightBehaviour.transform.position, knightBehaviour.enemy.transform.position);
+        }
+
+        public void Think()
+        {
+            canAttack = distanceToTarget <= attackRange;
+        }
+        #endregion
+
+        #region Methods
+        private void StartAttackTarget()
+        {
+            if (canAttack)
+            {
+                knightBehaviour.State = KnightState.Attack;
+            }
+        }
+
+        private void SetDestination()
+        {
+            knightBehaviour.enemy = knightBehaviour.SetTarget(EntityType.Viking);
+
+            knightBehaviour.agent.SetDestination(knightBehaviour.enemy.transform.position);//Null reference exception
+        }
+        #endregion
     }
-    #endregion
 }

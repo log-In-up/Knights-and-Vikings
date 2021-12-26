@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: PolygonAdventure - Props
+  m_EditorClassIdentifier: 
+  m_GroupName: PolygonAdventure - Props
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 5edb37bb78241224e9fb0e1f56b1ab88
+  m_SerializeEntries: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bdeb3f72f919d5144bbd8ed1646dcb74, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9867b1c6987f00d44a82751504aebac7, type: 2}
+    - {fileID: 11400000, guid: 6341e844a62f9dc4da527d363407a8c0, type: 2}

@@ -1,42 +1,63 @@
-public sealed class KnightReturnState : IEntityState
+using Entity.Behaviours;
+using Entity.Enums;
+using Entity.Interfaces;
+
+namespace Entity.States
 {
-    #region Parameters
-    private readonly KnightBehaviour knightBehaviour = null;
-    #endregion
-
-    public KnightReturnState(KnightBehaviour knightBehaviour)
+    public sealed class KnightReturnState : IEntityState
     {
-        this.knightBehaviour = knightBehaviour;
+        #region Parameters
+        private bool enemyIsOnTheBattlefield;
+
+        private readonly KnightBehaviour knightBehaviour = null;
+
+        private const int absenceVikings = 0;
+        #endregion
+
+        public KnightReturnState(KnightBehaviour knightBehaviour)
+        {
+            this.knightBehaviour = knightBehaviour;
+        }
+
+        #region Interface implementation
+        public void Act()
+        {
+            CheckForTargets();
+        }
+
+        public void Close()
+        {
+            knightBehaviour.agent.ResetPath();
+        }
+
+        public void Initialize()
+        {
+            knightBehaviour.agent.SetDestination(knightBehaviour.rallyPointPosition);
+
+            enemyIsOnTheBattlefield = knightBehaviour.BattleCurator.EntityHandler.AliveVikings.Count > absenceVikings;
+        }
+
+        public void Sense()
+        {
+
+        }
+
+        public void Think()
+        {
+            enemyIsOnTheBattlefield = knightBehaviour.BattleCurator.EntityHandler.AliveVikings.Count > absenceVikings;
+        }
+        #endregion
+
+        #region Methods
+        private void CheckForTargets()
+        {
+            if (enemyIsOnTheBattlefield)
+            {
+                knightBehaviour.enemy = knightBehaviour.SetTarget(EntityType.Viking);
+
+                knightBehaviour.State = KnightState.Chase;
+            }
+        }
+        #endregion
     }
-
-    #region Interface implementation
-    public void Act()
-    {
-
-    }
-
-    public void Close()
-    {
-        knightBehaviour.agent.ResetPath();
-    }
-
-    public void Initialize()
-    {
-        knightBehaviour.agent.SetDestination(knightBehaviour.rallyPointPosition);
-    }
-
-    public void Sense()
-    {
-
-    }
-
-    public void Think()
-    {
-
-    }
-    #endregion
-
-    #region Methods
-
-    #endregion
 }

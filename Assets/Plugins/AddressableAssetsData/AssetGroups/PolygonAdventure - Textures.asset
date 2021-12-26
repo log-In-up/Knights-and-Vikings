@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: PolygonAdventure - Textures
+  m_EditorClassIdentifier: 
+  m_GroupName: PolygonAdventure - Textures
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ded069878c0549349ad2c24449b32a19
+  m_SerializeEntries: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bdeb3f72f919d5144bbd8ed1646dcb74, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 3decaa2a4ce27a74a9f2446d4af6c72a, type: 2}
+    - {fileID: 11400000, guid: 5906a0c8c11afac49baee0d3cbbc3c28, type: 2}

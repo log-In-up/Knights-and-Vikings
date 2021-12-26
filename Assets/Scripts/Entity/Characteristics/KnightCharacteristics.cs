@@ -1,18 +1,21 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = fileName, menuName = menuName, order = order)]
-public sealed class KnightCharacteristics : EntityCharacteristics
+namespace Entity.Characteristics
 {
-    #region Create asset menu constants
-    private const string fileName = "Knight Settings", menuName = "Game settings/Entity settings/Knight";
-    private const int order = 1;
-    #endregion
+    [CreateAssetMenu(fileName = fileName, menuName = menuName, order = order)]
+    public sealed class KnightCharacteristics : EntityCharacteristics
+    {
+        #region Create asset menu constants
+        private const string fileName = "Knight Settings", menuName = "Game settings/Entity settings/Knight";
+        private const int order = 1;
+        #endregion
 
-    #region Parameters
-    
-    #endregion
+        #region Parameters
 
-    #region Properties
+        #endregion
 
-    #endregion
+        #region Properties
+
+        #endregion
+    }
 }

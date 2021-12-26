@@ -1,18 +1,21 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = fileName, menuName = menuName, order = order)]
-public sealed class VikingCharacteristics : EntityCharacteristics
+namespace Entity.Characteristics
 {
-    #region Create asset menu constants
-    private const string fileName = "Viking Settings", menuName = "Game settings/Entity settings/Viking";
-    private const int order = 1;
-    #endregion
+    [CreateAssetMenu(fileName = fileName, menuName = menuName, order = order)]
+    public sealed class VikingCharacteristics : EntityCharacteristics
+    {
+        #region Create asset menu constants
+        private const string fileName = "Viking Settings", menuName = "Game settings/Entity settings/Viking";
+        private const int order = 1;
+        #endregion
 
-    #region Parameters
+        #region Parameters
 
-    #endregion
+        #endregion
 
-    #region Properties
+        #region Properties
 
-    #endregion
+        #endregion
+    }
 }

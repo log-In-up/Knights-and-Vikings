@@ -1,33 +1,40 @@
+using Entity.Behaviours;
 using UnityEngine;
 
-public sealed class VikingMaker
+namespace GameLogic.Mechanics
 {
-    #region Parameters
-    private readonly BattleCurator curator = null;
-    private readonly Transform[] spawnPoints = null;
-
-    private const int firstSpawnPoint = 0;
-    #endregion
-
-    public VikingMaker(BattleCurator curator, Transform[] spawnPoints)
+    public sealed class VikingMaker : EntityMaker
     {
-        this.curator = curator;
-        this.spawnPoints = spawnPoints;
-    }
+        #region Parameters
+        private readonly PlayerBase playerBase = null;
 
-    #region Methods
-    public void SpawnViking(GameObject viking)
-    {
-        int randomPoint = Random.Range(firstSpawnPoint, spawnPoints.Length);
-        Transform spawnPoint = spawnPoints[randomPoint];
+        private const int firstSpawnPoint = 0;
+        #endregion
 
-        GameObject vikingEntity = Object.Instantiate(viking, spawnPoint.position, spawnPoint.rotation);
-
-        if (vikingEntity.TryGetComponent(out VikingBehaviour vikingBehaviour))
+        public VikingMaker(BattleCurator curator, PlayerBase playerBase, Transform[] spawnPoints) : base(curator, spawnPoints)
         {
-            vikingBehaviour.BattleCurator = curator;
-            curator.EntityHandler.AddAliveViking(vikingBehaviour);
+            this.playerBase = playerBase;
         }
+
+        #region Methods
+        public void CreateViking(GameObject viking)
+        {
+            int randomPoint = Random.Range(firstSpawnPoint, spawnPoints.Length);
+
+            GameObject vikingEntity = Object.Instantiate(viking, spawnPoints[randomPoint].position, spawnPoints[randomPoint].rotation);
+
+            if (vikingEntity.TryGetComponent(out VikingBehaviour vikingBehaviour))
+            {
+                vikingBehaviour.BattleCurator = curator;
+                vikingBehaviour.PlayerBase = playerBase;
+
+                curator.EntityHandler.AddAliveViking(vikingBehaviour);
+            }
+            else
+            {
+                Debug.LogError($"Object ({viking.name}) does not contain VikingBehaviour script.");
+            }
+        }
+        #endregion
     }
-    #endregion
 }

@@ -1,8 +1,11 @@
-public enum VikingState
+namespace Entity.Enums
 {
-    AttackBase,
-    Attack,
-    Chase,
-    Dead,
-    MovementToZone
+    public enum VikingState
+    {
+        AttackBase,
+        Attack,
+        Chase,
+        Dead,
+        MovementToZone
+    }
 }

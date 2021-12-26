@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Vikings
+  m_EditorClassIdentifier: 
+  m_GroupName: Vikings
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 6038ef185c518a040ab109f0044a1a8a
+  m_SerializeEntries:
+  - m_GUID: 002f2bca16ddbfc4fb164137a1bd5c01
+    m_Address: Viking_Two-Handed_Swordsman
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e0e81fc85ef3af944a9ff4be08c6f2b3
+    m_Address: Viking_Swordsman
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b6ae93a0aeec72f46a1595612a976d31
+    m_Address: Viking_Shooter
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c04fc119985423248ab6c34830973029
+    m_Address: TwoHandedSwordsmanVikingCharacteristics
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 49eac23388dcb074e9d879ccea96ef2b
+    m_Address: SwordsmanVikingCharacteristics
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 663d805dc14a9634d9c25ea05496e7fa
+    m_Address: ShooterVikingCharacteristics
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 16c03ddb1434cc14cb98c7b191e6bf6a
+    m_Address: Viking Spawn Settings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: bdeb3f72f919d5144bbd8ed1646dcb74, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 77c3782cdc8a085428b98c27cdd901a5, type: 2}
+    - {fileID: 11400000, guid: fb4d00b8c4b10bf4bb979b1dd5f30fbc, type: 2}

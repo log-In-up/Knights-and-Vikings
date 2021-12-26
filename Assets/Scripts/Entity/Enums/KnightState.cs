@@ -1,8 +1,11 @@
-public enum KnightState
+namespace Entity.Enums
 {
-    Attack,
-    Await,
-    Chase,
-    Dead,
-    Return
+    public enum KnightState
+    {
+        Attack,
+        Await,
+        Chase,
+        Dead,
+        Return
+    }
 }

@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public enum EntitySubtype
+namespace Entity.Enums
 {
-    [InspectorName("Shooter")]
-    Shooter,
-    [InspectorName("Swordsman")]
-    Swordsman,
-    [InspectorName("Two-Handed Swordsman")]
-    TwoHandedSwordsman
+    public enum EntitySubtype
+    {
+        [InspectorName("Shooter")]
+        Shooter,
+        [InspectorName("Swordsman")]
+        Swordsman,
+        [InspectorName("Two-Handed Swordsman")]
+        TwoHandedSwordsman
+    }
 }
