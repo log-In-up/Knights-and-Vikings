@@ -3,6 +3,7 @@ using Entity.Characteristics;
 using Entity.Enums;
 using Entity.Interfaces;
 using GameLogic;
+using GameLogic.Mechanics;
 using UnityEngine;
 
 namespace Entity.States
@@ -14,17 +15,20 @@ namespace Entity.States
         private float attackTime;
 
         private readonly float damageAmount, attackInterval;
+
         private readonly PlayerBase playerBase = null;
         private readonly VikingBehaviour vikingBehaviour = null;
+        private readonly EntityHandler entityHandler = null;
 
         private const int absenceOfKnights = 0;
         private const float abscenceOfCapacity = 0.0f;
         #endregion
 
-        public VikingAttackBaseState(VikingBehaviour vikingBehaviour, EntityCharacteristics characteristics, PlayerBase playerBase)
+        public VikingAttackBaseState(VikingBehaviour vikingBehaviour, EntityCharacteristics characteristics, EntityHandler entityHandler, PlayerBase playerBase)
         {
             this.vikingBehaviour = vikingBehaviour;
             this.playerBase = playerBase;
+            this.entityHandler = entityHandler;
 
             damageAmount = characteristics.Damage;
             attackInterval = characteristics.AttackInterval;
@@ -45,7 +49,7 @@ namespace Entity.States
 
         public void Initialize()
         {
-            enemyIsOnTheBattlefield = vikingBehaviour.BattleCurator.EntityHandler.AliveKnights.Count > absenceOfKnights;
+            enemyIsOnTheBattlefield = entityHandler.AliveKnights.Count > absenceOfKnights;
 
             attackTime = Time.time;
         }
@@ -57,7 +61,7 @@ namespace Entity.States
 
         public void Think()
         {
-            enemyIsOnTheBattlefield = vikingBehaviour.BattleCurator.EntityHandler.AliveKnights.Count > absenceOfKnights;
+            enemyIsOnTheBattlefield = entityHandler.AliveKnights.Count > absenceOfKnights;
 
             baseIsNotDestroyed = playerBase.BuildingCapacity > abscenceOfCapacity;
         }

@@ -1,5 +1,8 @@
 using Entity.Enums;
+using Entity.Interfaces;
 using Entity.States;
+using GameLogic.Mechanics;
+using System.Collections.Generic;
 
 namespace Entity.Behaviours
 {
@@ -7,6 +10,7 @@ namespace Entity.Behaviours
     {
         #region Parameters 
         private VikingState vikingState;
+        private Dictionary<VikingState, IEntityState> States;
 
         private const int noKnights = 0;
         #endregion
@@ -34,8 +38,8 @@ namespace Entity.Behaviours
                 vikingState = value;
 
                 entityState.Close();
-
-                InitializeState(vikingState);
+                entityState = States[vikingState];
+                entityState.Initialize();
             }
         }
         #endregion
@@ -43,33 +47,25 @@ namespace Entity.Behaviours
         #region MonoBehaviour API
         protected override void Start()
         {
+            States = new Dictionary<VikingState, IEntityState>
+            {
+                [VikingState.AttackBase] = new VikingAttackBaseState(this, EntityCharacteristics, EntityHandler, PlayerBase),
+                [VikingState.Attack] = new VikingAttackState(this, EntityCharacteristics, EntityHandler),
+                [VikingState.Chase] = new VikingChaseState(this, EntityCharacteristics),
+                [VikingState.Dead] = new VikingDeadState(this, EntityCharacteristics, EntityHandler),
+                [VikingState.MovementToZone] = new VikingMovementToZoneState(this, EntityCharacteristics, EntityHandler, PlayerBase)
+            };
+
             base.Start();
 
-            VikingState state = curator.EntityHandler.AliveKnights.Count > noKnights ? VikingState.Chase : VikingState.MovementToZone;
-
-            InitializeState(state);
+            VikingState state = EntityHandler.AliveKnights.Count > noKnights ? VikingState.Chase : VikingState.MovementToZone;
+            entityState = States[state];
+            entityState.Initialize();
         }
 
         protected override void Update()
         {
             base.Update();
-        }
-        #endregion
-
-        #region Methods
-        private void InitializeState(VikingState state)
-        {
-            entityState = state switch
-            {
-                VikingState.AttackBase => new VikingAttackBaseState(this, EntityCharacteristics, PlayerBase),
-                VikingState.Attack => new VikingAttackState(this, EntityCharacteristics),
-                VikingState.Chase => new VikingChaseState(this, EntityCharacteristics),
-                VikingState.Dead => new VikingDeadState(this, EntityCharacteristics, curator),
-                VikingState.MovementToZone => new VikingMovementToZoneState(this, EntityCharacteristics, PlayerBase),
-                _ => throw new System.NotImplementedException($"State {state} does not implemented.")
-            };
-
-            entityState.Initialize();
         }
         #endregion
     }

@@ -12,8 +12,9 @@ namespace Entity.States
         private bool canReturn;
         private float initializeTime;
 
-        private readonly KnightBehaviour knightBehaviour = null;
         private readonly float awaitingTime;
+
+        private readonly KnightBehaviour knightBehaviour = null;
         #endregion
 
         public KnightAwaitState(KnightBehaviour knightBehaviour, EntityCharacteristics characteristics)

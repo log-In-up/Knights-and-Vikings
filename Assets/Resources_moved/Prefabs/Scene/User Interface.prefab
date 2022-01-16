@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 145554299225392513}
   - component: {fileID: 3292370501119917605}
   m_Layer: 5
-  m_Name: Current wave number
+  m_Name: Current Wave Number
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -740,7 +740,7 @@ GameObject:
   - component: {fileID: 984936922420635164}
   - component: {fileID: 8472808344485313538}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: Event System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -806,7 +806,7 @@ GameObject:
   - component: {fileID: 8002425086579824959}
   - component: {fileID: 5083705409005860887}
   m_Layer: 5
-  m_Name: PlayerBaseHealthPoints
+  m_Name: Player Base Health Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1320,7 +1320,7 @@ GameObject:
   - component: {fileID: 2966302557010207370}
   - component: {fileID: 1570319165475832555}
   m_Layer: 5
-  m_Name: CurrentWaveSlider
+  m_Name: Current Wave Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

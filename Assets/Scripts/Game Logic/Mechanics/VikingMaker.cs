@@ -1,34 +1,72 @@
 using Entity.Behaviours;
+using GameLogic.Settings;
 using UnityEngine;
 
 namespace GameLogic.Mechanics
 {
+    [RequireComponent(typeof(BattleCurator))]
     public sealed class VikingMaker : EntityMaker
     {
-        #region Parameters
-        private readonly PlayerBase playerBase = null;
-
-        private const int firstSpawnPoint = 0;
+        #region Editor parameters
+        [Header("Vikings spawn settings")]
+        [SerializeField] private PlayerBase playerBase = null;
+        [SerializeField] private EnemySpawnSettings enemySpawnSettings = null;
         #endregion
 
-        public VikingMaker(BattleCurator curator, PlayerBase playerBase, Transform[] spawnPoints) : base(curator, spawnPoints)
+        #region Parameters
+        private float nextSpawnTime;
+
+        private const int firstSpawnPoint = 0;
+        private const int lackOfTokens = 0;
+        #endregion
+
+        protected override void Awake()
         {
-            this.playerBase = playerBase;
+            base.Awake();
+        }
+
+        private void Start()
+        {
+            nextSpawnTime = Time.time;
+        }
+
+        private void Update()
+        {
+            if(curator.InBattle)
+            {
+                TrackingAndCreatingVikings();
+            }
         }
 
         #region Methods
+        private void TrackingAndCreatingVikings()
+        {
+            if (entityHandler.AliveVikings.Count < enemySpawnSettings.SimultaneousCount)
+            {
+                if (curator.LevelTokens > lackOfTokens && Time.time > nextSpawnTime)
+                {
+                    CreateViking(enemySpawnSettings.Shooter);
+
+                    curator.LevelTokens--;
+
+                    nextSpawnTime = Time.time + enemySpawnSettings.SpawnDelay;
+                }
+            }
+        }
+
         public void CreateViking(GameObject viking)
         {
             int randomPoint = Random.Range(firstSpawnPoint, spawnPoints.Length);
 
-            GameObject vikingEntity = Object.Instantiate(viking, spawnPoints[randomPoint].position, spawnPoints[randomPoint].rotation);
+            GameObject vikingEntity = Instantiate(viking, spawnPoints[randomPoint].position, spawnPoints[randomPoint].rotation);
 
             if (vikingEntity.TryGetComponent(out VikingBehaviour vikingBehaviour))
             {
+                vikingBehaviour.EntityHandler = entityHandler;
                 vikingBehaviour.BattleCurator = curator;
                 vikingBehaviour.PlayerBase = playerBase;
 
-                curator.EntityHandler.AddAliveViking(vikingBehaviour);
+                entityHandler.AddAliveViking(vikingBehaviour);
             }
             else
             {

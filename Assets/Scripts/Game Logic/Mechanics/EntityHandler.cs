@@ -2,18 +2,21 @@ using Entity.Behaviours;
 using Entity.Enums;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GameLogic.Mechanics
 {
-    public sealed class EntityHandler
+    [RequireComponent(typeof(BattleCurator))]
+    public sealed class EntityHandler : MonoBehaviour
     {
-        #region Parameters
-        private readonly List<KnightBehaviour> aliveKnights = null, deadKnights = null;
-        private readonly List<VikingBehaviour> aliveVikings = null, deadVikings = null;
+        #region Editor parameters
+        [SerializeField] private KnightRallyPoint rallyPoint = null;
+        #endregion
 
-        private readonly KnightRallyPoint rallyPoint = null;
-        private readonly Slider slider = null;
+        #region Parameters
+        private BattleCurator curator = null;
+
+        private List<KnightBehaviour> aliveKnights = null, deadKnights = null;
+        private List<VikingBehaviour> aliveVikings = null, deadVikings = null;
         #endregion
 
         #region Properties
@@ -21,10 +24,9 @@ namespace GameLogic.Mechanics
         public List<VikingBehaviour> AliveVikings => aliveVikings;
         #endregion
 
-        public EntityHandler(KnightRallyPoint rallyPoint, Slider slider)
+        private void Awake()
         {
-            this.rallyPoint = rallyPoint;
-            this.slider = slider;
+            curator = GetComponent<BattleCurator>();
 
             aliveKnights = new List<KnightBehaviour>();
             aliveVikings = new List<VikingBehaviour>();
@@ -80,7 +82,7 @@ namespace GameLogic.Mechanics
             }
             aliveVikings.Add(viking);
 
-            slider.value += 1;
+            curator.WaveEnemiesCount += 1;            
         }
 
         internal void AddDeadKnight(KnightBehaviour knight)
@@ -96,7 +98,7 @@ namespace GameLogic.Mechanics
             aliveVikings.Remove(viking);
             deadVikings.Add(viking);
 
-            slider.value -= 1;
+            curator.WaveEnemiesCount -= 1;
         }
 
         private void SetRallyPoints()

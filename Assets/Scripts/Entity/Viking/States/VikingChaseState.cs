@@ -13,6 +13,7 @@ namespace Entity.States
         private float distanceToTarget;
 
         private readonly float attackRange;
+
         private readonly VikingBehaviour vikingBehaviour = null;
 
         private const float initialDistanceToTarget = 0.0f;

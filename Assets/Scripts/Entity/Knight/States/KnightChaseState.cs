@@ -9,12 +9,12 @@ namespace Entity.States
     public sealed class KnightChaseState : IEntityState
     {
         #region Parameters
+        private bool canAttack;
+        private float distanceToTarget;
+
         private readonly float attackRange;
 
         private readonly KnightBehaviour knightBehaviour = null;
-
-        private bool canAttack;
-        private float distanceToTarget;
 
         private const float initialDistanceToTarget = 0.0f;
         #endregion

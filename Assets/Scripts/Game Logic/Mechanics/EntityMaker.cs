@@ -2,17 +2,22 @@ using UnityEngine;
 
 namespace GameLogic.Mechanics
 {
-    public class EntityMaker
+    [RequireComponent(typeof(BattleCurator))]
+    public class EntityMaker : MonoBehaviour
     {
-        #region Parameters
-        private protected readonly BattleCurator curator = null;
-        private protected readonly Transform[] spawnPoints = null;
+        #region Editor parameters
+        [Header("Standart spawn settings")]
+        [SerializeField] private protected EntityHandler entityHandler = null;
+        [SerializeField] private protected Transform[] spawnPoints = null;
         #endregion
 
-        public EntityMaker(BattleCurator curator, Transform[] spawnPoints)
+        #region Parameters
+        private protected BattleCurator curator = null;
+        #endregion
+
+        protected virtual void Awake()
         {
-            this.curator = curator;
-            this.spawnPoints = spawnPoints;
+            curator = GetComponent<BattleCurator>();
         }
     }
 }

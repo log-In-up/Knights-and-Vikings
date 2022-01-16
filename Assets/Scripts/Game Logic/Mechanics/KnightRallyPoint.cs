@@ -3,24 +3,19 @@ using UnityEngine;
 
 namespace GameLogic.Mechanics
 {
-    public sealed class KnightRallyPoint
+    public sealed class KnightRallyPoint : MonoBehaviour
     {
-        #region Parameters
-        private readonly Transform rallyPoint = null;
-        private readonly PlayerSpawnSettings pointSettings = null;
+        #region Editor parameters
+        [SerializeField] private Transform rallyPoint = null;
+        [SerializeField] private PlayerSpawnSettings pointSettings = null;
+        #endregion
 
+        #region Parameters
         private const float startOffsetValue = 0.0f, invertor = -1.0f;
         private const int startCount = 0;
         #endregion
 
-        public KnightRallyPoint(Transform rallyPoint, PlayerSpawnSettings pointSettings)
-        {
-            this.rallyPoint = rallyPoint;
-            this.pointSettings = pointSettings;
-        }
-
         #region Custom methods
-
         public Vector3[] GetPointsForPlacement(int count)
         {
             Vector3[] points = new Vector3[count];

@@ -3,6 +3,7 @@ using Entity.Characteristics;
 using Entity.Enums;
 using Entity.Interfaces;
 using GameLogic;
+using GameLogic.Mechanics;
 using UnityEngine;
 
 namespace Entity.States
@@ -16,13 +17,15 @@ namespace Entity.States
         private readonly VikingBehaviour vikingBehaviour = null;
         private readonly EntityCharacteristics characteristics = null;
         private readonly PlayerBase playerBase = null;
+        private readonly EntityHandler entityHandler = null;
 
         private const int absenceOfKnights = 0;
         #endregion
 
-        public VikingMovementToZoneState(VikingBehaviour vikingBehaviour, EntityCharacteristics characteristics, PlayerBase playerBase)
+        public VikingMovementToZoneState(VikingBehaviour vikingBehaviour, EntityCharacteristics characteristics, EntityHandler entityHandler, PlayerBase playerBase)
         {
             this.vikingBehaviour = vikingBehaviour;
+            this.entityHandler = entityHandler;
             this.characteristics = characteristics;
             this.playerBase = playerBase;
         }
@@ -42,7 +45,7 @@ namespace Entity.States
 
         public void Initialize()
         {
-            enemyIsOnTheBattlefield = vikingBehaviour.BattleCurator.EntityHandler.AliveKnights.Count > absenceOfKnights;
+            enemyIsOnTheBattlefield = entityHandler.AliveKnights.Count > absenceOfKnights;
 
             vikingBehaviour.agent.SetDestination(playerBase.transform.position);
         }
@@ -55,7 +58,7 @@ namespace Entity.States
         public void Think()
         {
             canAttackPlayerBase = distanceToPlayerBase < characteristics.AttackRange;
-            enemyIsOnTheBattlefield = vikingBehaviour.BattleCurator.EntityHandler.AliveKnights.Count > absenceOfKnights;
+            enemyIsOnTheBattlefield = entityHandler.AliveKnights.Count > absenceOfKnights;
         }
         #endregion
 

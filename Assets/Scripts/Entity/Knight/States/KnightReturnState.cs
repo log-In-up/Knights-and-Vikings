@@ -1,6 +1,7 @@
 using Entity.Behaviours;
 using Entity.Enums;
 using Entity.Interfaces;
+using GameLogic.Mechanics;
 
 namespace Entity.States
 {
@@ -10,13 +11,15 @@ namespace Entity.States
         private bool enemyIsOnTheBattlefield;
 
         private readonly KnightBehaviour knightBehaviour = null;
+        private readonly EntityHandler entityHandler = null;
 
         private const int absenceVikings = 0;
         #endregion
 
-        public KnightReturnState(KnightBehaviour knightBehaviour)
+        public KnightReturnState(KnightBehaviour knightBehaviour, EntityHandler entityHandler)
         {
             this.knightBehaviour = knightBehaviour;
+            this.entityHandler = entityHandler;
         }
 
         #region Interface implementation
@@ -34,7 +37,7 @@ namespace Entity.States
         {
             knightBehaviour.agent.SetDestination(knightBehaviour.rallyPointPosition);
 
-            enemyIsOnTheBattlefield = knightBehaviour.BattleCurator.EntityHandler.AliveVikings.Count > absenceVikings;
+            enemyIsOnTheBattlefield = entityHandler.AliveVikings.Count > absenceVikings;
         }
 
         public void Sense()
@@ -44,7 +47,7 @@ namespace Entity.States
 
         public void Think()
         {
-            enemyIsOnTheBattlefield = knightBehaviour.BattleCurator.EntityHandler.AliveVikings.Count > absenceVikings;
+            enemyIsOnTheBattlefield = entityHandler.AliveVikings.Count > absenceVikings;
         }
         #endregion
 

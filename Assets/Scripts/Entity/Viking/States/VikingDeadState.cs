@@ -1,7 +1,7 @@
 using Entity.Behaviours;
 using Entity.Characteristics;
 using Entity.Interfaces;
-using GameLogic;
+using GameLogic.Mechanics;
 
 namespace Entity.States
 {
@@ -11,13 +11,13 @@ namespace Entity.States
         private readonly float healthPoints;
 
         private readonly VikingBehaviour vikingBehaviour = null;
-        private readonly BattleCurator curator = null;
+        private readonly EntityHandler entityHandler = null;
         #endregion
 
-        public VikingDeadState(VikingBehaviour vikingBehaviour, EntityCharacteristics entityCharacteristics, BattleCurator curator)
+        public VikingDeadState(VikingBehaviour vikingBehaviour,  EntityCharacteristics entityCharacteristics, EntityHandler entityHandler)
         {
             this.vikingBehaviour = vikingBehaviour;
-            this.curator = curator;
+            this.entityHandler = entityHandler;
 
             healthPoints = entityCharacteristics.HealthPoints;
         }
@@ -30,14 +30,14 @@ namespace Entity.States
 
         public void Close()
         {
-            curator.EntityHandler.AddAliveViking(vikingBehaviour);
+            entityHandler.AddAliveViking(vikingBehaviour);
 
             vikingBehaviour.HealthPoints = healthPoints;
         }
 
         public void Initialize()
         {
-            curator.EntityHandler.AddDeadViking(vikingBehaviour);
+            entityHandler.AddDeadViking(vikingBehaviour);
         }
 
         public void Sense()

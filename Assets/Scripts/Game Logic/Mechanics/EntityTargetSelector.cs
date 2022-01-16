@@ -9,21 +9,24 @@ namespace GameLogic.Mechanics
     {
         #region Parameters
         private readonly EntityBehaviour entityBehaviour = null;
+        private readonly EntityHandler entityHandler = null;
 
         private const int noEnemies = 0;
         #endregion
 
-        public EntityTargetSelector(EntityBehaviour entityBehaviour)
+        public EntityTargetSelector(EntityBehaviour entityBehaviour, EntityHandler entityHandler)
         {
             this.entityBehaviour = entityBehaviour;
+            this.entityHandler = entityHandler;
+
         }
 
         #region Methods    
         public EntityBehaviour SetTarget(EntityType entityType)
         {
-            List<EntityBehaviour> shooter = entityBehaviour.BattleCurator.EntityHandler.GetListOfSpecificEntities(EntitySubtype.Shooter, entityType);
-            List<EntityBehaviour> swordsmans = entityBehaviour.BattleCurator.EntityHandler.GetListOfSpecificEntities(EntitySubtype.Swordsman, entityType);
-            List<EntityBehaviour> twoHandedSwordsman = entityBehaviour.BattleCurator.EntityHandler.GetListOfSpecificEntities(EntitySubtype.TwoHandedSwordsman, entityType);
+            List<EntityBehaviour> shooter = entityHandler.GetListOfSpecificEntities(EntitySubtype.Shooter, entityType);
+            List<EntityBehaviour> swordsmans = entityHandler.GetListOfSpecificEntities(EntitySubtype.Swordsman, entityType);
+            List<EntityBehaviour> twoHandedSwordsman = entityHandler.GetListOfSpecificEntities(EntitySubtype.TwoHandedSwordsman, entityType);
 
             List<EntityBehaviour> listOfEntities = entityBehaviour.EntitySubtype switch
             {

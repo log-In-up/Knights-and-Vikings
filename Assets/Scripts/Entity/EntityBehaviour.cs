@@ -18,14 +18,16 @@ namespace Entity.Behaviours
         #endregion
 
         #region Parameters
-        internal NavMeshAgent agent = null;
-        internal EntityBehaviour enemy = null;
+        private float healthPoints;
+
+        private EntityHandler entityHandler = null;
+        private EntityTargetSelector targetSelector = null;
 
         private protected BattleCurator curator = null;
         private protected IEntityState entityState = null;
-        
-        private EntityTargetSelector targetSelector = null;
-        private float healthPoints;
+
+        internal NavMeshAgent agent = null;
+        internal EntityBehaviour enemy = null;
 
         private protected const float noHealthPoints = 0.0f;
         #endregion
@@ -33,33 +35,27 @@ namespace Entity.Behaviours
         #region Properties
         public PlayerBase PlayerBase { get; set; }
 
-        public virtual float HealthPoints
-        {
-            get => healthPoints;
-            set => healthPoints = value;
-        }
+        public virtual float HealthPoints { get => healthPoints; set => healthPoints = value; }
 
-        public BattleCurator BattleCurator
-        {
-            get => curator;
-            set => curator = value;
-        }
+        public BattleCurator BattleCurator { get => curator; set => curator = value; }
 
         public EntitySubtype EntitySubtype => entitySubtype;
 
         public EntityCharacteristics EntityCharacteristics => characteristics;
+
+        public EntityHandler EntityHandler { get => entityHandler; set => entityHandler = value; }
         #endregion
 
         #region MonoBehaviour API
         protected virtual void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
-
-            targetSelector = new EntityTargetSelector(this);
         }
 
         protected virtual void Start()
         {
+            targetSelector = new EntityTargetSelector(this, entityHandler);
+
             HealthPoints = characteristics.HealthPoints;
         }
 

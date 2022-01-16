@@ -1,23 +1,23 @@
 using Entity.Behaviours;
 using Entity.Characteristics;
 using Entity.Interfaces;
-using GameLogic;
+using GameLogic.Mechanics;
 
 namespace Entity.States
 {
     public sealed class KnightDeadState : IEntityState
     {
         #region Parameters
-        private readonly KnightBehaviour knightBehaviour = null;
-        private readonly BattleCurator curator = null;
-
         private readonly float healthPoints;
+
+        private readonly KnightBehaviour knightBehaviour = null;
+        private readonly EntityHandler entityHandler = null;
         #endregion
 
-        public KnightDeadState(KnightBehaviour knightBehaviour, EntityCharacteristics entityCharacteristics, BattleCurator curator)
+        public KnightDeadState(KnightBehaviour knightBehaviour, EntityCharacteristics entityCharacteristics, EntityHandler entityHandler)
         {
             this.knightBehaviour = knightBehaviour;
-            this.curator = curator;
+            this.entityHandler = entityHandler;
 
             healthPoints = entityCharacteristics.HealthPoints;
         }
@@ -30,14 +30,14 @@ namespace Entity.States
 
         public void Close()
         {
-            curator.EntityHandler.AddAliveKnight(knightBehaviour);
+            entityHandler.AddAliveKnight(knightBehaviour);
 
             knightBehaviour.HealthPoints = healthPoints;
         }
 
         public void Initialize()
         {
-            curator.EntityHandler.AddDeadKnight(knightBehaviour);
+            entityHandler.AddDeadKnight(knightBehaviour);
         }
 
         public void Sense()

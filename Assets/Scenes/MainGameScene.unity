@@ -809,6 +809,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2119648963}
   - component: {fileID: 2119648964}
+  - component: {fileID: 2119648967}
+  - component: {fileID: 2119648966}
+  - component: {fileID: 2119648965}
+  - component: {fileID: 2119648968}
   m_Layer: 2
   m_Name: Game Logic
   m_TagString: Untagged
@@ -846,24 +850,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2912b6b30efc23d4e9b87c0298026538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBase: {fileID: 130815229}
+  waveState: {fileID: 4905911385348583322}
+  waveText: {fileID: 593550446}
+  startGame: {fileID: 4905911385348583323}
+--- !u!114 &2119648965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119648962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b512995e99ff587449a387b9a15ad1b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rallyPoint: {fileID: 2119648968}
+  curator: {fileID: 2119648964}
+--- !u!114 &2119648966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119648962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00d3e34fff8ade49b3a0f66461441f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityHandler: {fileID: 2119648965}
+  spawnPoints:
+  - {fileID: 34280962}
+  - {fileID: 628751262}
   knightSpawnSettings: {fileID: 11400000, guid: 8297e27d1e23b864681547a80734e363,
     type: 2}
   knightRallyPoint: {fileID: 1490688616}
-  knightSpawnPoints:
-  - {fileID: 34280962}
-  - {fileID: 628751262}
-  enemySpawnSettings: {fileID: 11400000, guid: 16c03ddb1434cc14cb98c7b191e6bf6a, type: 2}
-  vikingSpawnPoints:
+  spawnShooter: {fileID: 4905911385348583326}
+  spawnSwordsman: {fileID: 4905911385348583325}
+  spawnTwoHandedSwordsman: {fileID: 4905911385348583324}
+--- !u!114 &2119648967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119648962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 998a1f62efca54a4cb434bb70436c566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityHandler: {fileID: 2119648965}
+  spawnPoints:
   - {fileID: 268084949}
   - {fileID: 274791801}
   - {fileID: 878506734}
   playerBase: {fileID: 130815229}
-  waveState: {fileID: 4905911385348583322}
-  waveText: {fileID: 593550446}
-  spawnShooter: {fileID: 4905911385348583326}
-  spawnSwordsman: {fileID: 4905911385348583325}
-  spawnTwoHandedSwordsman: {fileID: 4905911385348583324}
-  startGame: {fileID: 4905911385348583323}
+  enemySpawnSettings: {fileID: 11400000, guid: 16c03ddb1434cc14cb98c7b191e6bf6a, type: 2}
+--- !u!114 &2119648968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119648962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a86e7f599fb474ea19eb736d4c0c91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rallyPoint: {fileID: 1490688616}
+  pointSettings: {fileID: 11400000, guid: 8297e27d1e23b864681547a80734e363, type: 2}
 --- !u!1001 &4905911385348583321
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using Entity.Behaviours;
 using Entity.Characteristics;
 using Entity.Enums;
 using Entity.Interfaces;
+using GameLogic.Mechanics;
 using UnityEngine;
 
 namespace Entity.States
@@ -13,15 +14,18 @@ namespace Entity.States
         private float attackTime, distanceBetweenSelfAndEnemy;
 
         private readonly float attackInterval, attackRange, damageAmount;
+
         private readonly KnightBehaviour knightBehaviour = null;
+        private readonly EntityHandler entityHandler = null;
 
         private const float noHealthPoints = 0.0f;
         private const int absenceVikings = 0;
         #endregion
 
-        public KnightAttackState(KnightBehaviour knightBehaviour, EntityCharacteristics characteristics)
+        public KnightAttackState(KnightBehaviour knightBehaviour, EntityCharacteristics characteristics, EntityHandler entityHandler)
         {
             this.knightBehaviour = knightBehaviour;
+            this.entityHandler = entityHandler;
 
             attackInterval = characteristics.AttackInterval;
             attackRange = characteristics.AttackRange;
@@ -56,7 +60,7 @@ namespace Entity.States
         public void Think()
         {
             enemyIsDead = knightBehaviour.enemy.HealthPoints <= noHealthPoints;
-            enemyIsOnTheBattlefield = knightBehaviour.BattleCurator.EntityHandler.AliveVikings.Count > absenceVikings;
+            enemyIsOnTheBattlefield = entityHandler.AliveVikings.Count > absenceVikings;
 
             canChase = distanceBetweenSelfAndEnemy > attackRange;
 
