@@ -2,15 +2,13 @@ using Entity.Behaviours;
 using GameLogic.Settings;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace GameLogic.Mechanics
 {
     public sealed class KnightMaker : EntityMaker
     {
         #region Editor parameters
-        [Header("Knights spawn settings")]
-        [SerializeField] private PlayerSpawnSettings knightSpawnSettings = null;
-
         [Header("Control buttons")]
         [SerializeField] private Button spawnShooter = null;
         [SerializeField] private Button spawnSwordsman = null;
@@ -18,15 +16,21 @@ namespace GameLogic.Mechanics
         #endregion
 
         #region Parameters
+        private PlayerSpawnSettings knightSpawnSettings = null;
+        #endregion
 
+        #region Zenject
+        [Inject]
+        private DiContainer diContainer = null;
+
+        [Inject]
+        private void Constructor(PlayerSpawnSettings playerSpawnSettings)
+        {
+            knightSpawnSettings = playerSpawnSettings;
+        }
         #endregion
 
         #region MonoBehaviour API
-        protected override void Awake()
-        {
-            base.Awake();
-        }
-
         private void OnEnable()
         {
             spawnShooter.onClick.AddListener(CreateShooters);
@@ -52,13 +56,10 @@ namespace GameLogic.Mechanics
                 Transform spawnPosition = spawnPoints[spawnIndex];
                 spawnIndex = ++spawnIndex % spawnPoints.Length;
 
-                GameObject knightEntity = Instantiate(knight, spawnPosition.position, spawnPosition.rotation);
+                GameObject knightEntity = diContainer.InstantiatePrefab(knight, spawnPosition.position, spawnPosition.rotation, null);
 
                 if (knightEntity.TryGetComponent(out KnightBehaviour knightBehaviour))
                 {
-                    knightBehaviour.EntityHandler = entityHandler;
-                    knightBehaviour.BattleCurator = curator;
-
                     entityHandler.AddAliveKnight(knightBehaviour);
                 }
                 else

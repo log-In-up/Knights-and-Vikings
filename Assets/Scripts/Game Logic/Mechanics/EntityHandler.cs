@@ -2,17 +2,14 @@ using Entity.Behaviours;
 using Entity.Enums;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace GameLogic.Mechanics
-{
-    [RequireComponent(typeof(BattleCurator))]
+{    
     public sealed class EntityHandler : MonoBehaviour
     {
-        #region Editor parameters
-        [SerializeField] private KnightRallyPoint rallyPoint = null;
-        #endregion
-
         #region Parameters
+        private KnightRallyPoint rallyPoint = null;
         private BattleCurator curator = null;
 
         private List<KnightBehaviour> aliveKnights = null, deadKnights = null;
@@ -24,15 +21,24 @@ namespace GameLogic.Mechanics
         public List<VikingBehaviour> AliveVikings => aliveVikings;
         #endregion
 
+        #region Zenject
+        [Inject]
+        private void Constructor(BattleCurator battleCurator, KnightRallyPoint knightRallyPoint)
+        {
+            curator = battleCurator;
+            rallyPoint = knightRallyPoint;
+        }
+        #endregion
+
+        #region MonoBehaviour API
         private void Awake()
         {
-            curator = GetComponent<BattleCurator>();
-
             aliveKnights = new List<KnightBehaviour>();
             aliveVikings = new List<VikingBehaviour>();
             deadKnights = new List<KnightBehaviour>();
             deadVikings = new List<VikingBehaviour>();
         }
+        #endregion
 
         #region Methods
         public List<EntityBehaviour> GetListOfSpecificEntities(EntitySubtype subtype, EntityType type)
@@ -82,7 +88,7 @@ namespace GameLogic.Mechanics
             }
             aliveVikings.Add(viking);
 
-            curator.WaveEnemiesCount += 1;            
+            curator.WaveEnemiesCount += 1;
         }
 
         internal void AddDeadKnight(KnightBehaviour knight)

@@ -1,30 +1,33 @@
 using Entity.Behaviours;
 using GameLogic.Settings;
 using UnityEngine;
+using Zenject;
 
 namespace GameLogic.Mechanics
 {
-    [RequireComponent(typeof(BattleCurator))]
     public sealed class VikingMaker : EntityMaker
     {
-        #region Editor parameters
-        [Header("Vikings spawn settings")]
-        [SerializeField] private PlayerBase playerBase = null;
-        [SerializeField] private EnemySpawnSettings enemySpawnSettings = null;
-        #endregion
-
         #region Parameters
         private float nextSpawnTime;
+
+        private EnemySpawnSettings enemySpawnSettings = null;
 
         private const int firstSpawnPoint = 0;
         private const int lackOfTokens = 0;
         #endregion
 
-        protected override void Awake()
-        {
-            base.Awake();
-        }
+        #region Zenject
+        [Inject]
+        private DiContainer diContainer = null;
 
+        [Inject]
+        private void Constructor(EnemySpawnSettings enemySpawnSettings)
+        {
+            this.enemySpawnSettings = enemySpawnSettings;
+        }
+        #endregion
+
+        #region MonoBehaviour API
         private void Start()
         {
             nextSpawnTime = Time.time;
@@ -32,11 +35,12 @@ namespace GameLogic.Mechanics
 
         private void Update()
         {
-            if(curator.InBattle)
+            if (curator.InBattle)
             {
                 TrackingAndCreatingVikings();
             }
         }
+        #endregion
 
         #region Methods
         private void TrackingAndCreatingVikings()
@@ -58,14 +62,10 @@ namespace GameLogic.Mechanics
         {
             int randomPoint = Random.Range(firstSpawnPoint, spawnPoints.Length);
 
-            GameObject vikingEntity = Instantiate(viking, spawnPoints[randomPoint].position, spawnPoints[randomPoint].rotation);
+            GameObject vikingEntity = diContainer.InstantiatePrefab(viking, spawnPoints[randomPoint].position, spawnPoints[randomPoint].rotation, null);
 
             if (vikingEntity.TryGetComponent(out VikingBehaviour vikingBehaviour))
             {
-                vikingBehaviour.EntityHandler = entityHandler;
-                vikingBehaviour.BattleCurator = curator;
-                vikingBehaviour.PlayerBase = playerBase;
-
                 entityHandler.AddAliveViking(vikingBehaviour);
             }
             else

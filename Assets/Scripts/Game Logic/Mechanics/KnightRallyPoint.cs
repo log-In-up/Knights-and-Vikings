@@ -1,5 +1,6 @@
 ﻿using GameLogic.Settings;
 using UnityEngine;
+using Zenject;
 
 namespace GameLogic.Mechanics
 {
@@ -7,12 +8,21 @@ namespace GameLogic.Mechanics
     {
         #region Editor parameters
         [SerializeField] private Transform rallyPoint = null;
-        [SerializeField] private PlayerSpawnSettings pointSettings = null;
         #endregion
 
         #region Parameters
         private const float startOffsetValue = 0.0f, invertor = -1.0f;
         private const int startCount = 0;
+
+        private PlayerSpawnSettings pointSettings = null;
+        #endregion
+
+        #region Zenject
+        [Inject]
+        private void Constructor(PlayerSpawnSettings playerSpawnSettings)
+        {
+            pointSettings = playerSpawnSettings;
+        }
         #endregion
 
         #region Custom methods

@@ -1,8 +1,10 @@
 using Entity.Enums;
 using Entity.Interfaces;
 using Entity.States;
+using GameLogic;
 using GameLogic.Mechanics;
 using System.Collections.Generic;
+using Zenject;
 
 namespace Entity.Behaviours
 {
@@ -41,6 +43,16 @@ namespace Entity.Behaviours
                 entityState = States[vikingState];
                 entityState.Initialize();
             }
+        }
+        #endregion
+
+        #region Zenject
+        [Inject]
+        private void Constructor(EntityHandler entityHandler, BattleCurator battleCurator, PlayerBase playerBase)
+        {
+            EntityHandler = entityHandler;
+            BattleCurator = battleCurator;
+            PlayerBase = playerBase;
         }
         #endregion
 

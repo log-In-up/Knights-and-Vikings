@@ -1,23 +1,28 @@
 using UnityEngine;
+using Zenject;
 
 namespace GameLogic.Mechanics
 {
-    [RequireComponent(typeof(BattleCurator))]
     public class EntityMaker : MonoBehaviour
     {
         #region Editor parameters
-        [Header("Standart spawn settings")]
-        [SerializeField] private protected EntityHandler entityHandler = null;
+        [Header("Standard spawn settings")]
         [SerializeField] private protected Transform[] spawnPoints = null;
         #endregion
 
         #region Parameters
         private protected BattleCurator curator = null;
+        private protected EntityHandler entityHandler = null;
         #endregion
 
-        protected virtual void Awake()
+        #region Zenject
+        [Inject]
+        private void Constructor(EntityHandler entityHandler, BattleCurator battleCurator)
         {
-            curator = GetComponent<BattleCurator>();
+            this.entityHandler = entityHandler;
+            
+            curator = battleCurator;
         }
+        #endregion
     }
 }

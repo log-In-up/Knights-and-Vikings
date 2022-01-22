@@ -1,8 +1,11 @@
 using Entity.Enums;
 using Entity.Interfaces;
 using Entity.States;
+using GameLogic;
+using GameLogic.Mechanics;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Entity.Behaviours
 {
@@ -43,6 +46,15 @@ namespace Entity.Behaviours
                 entityState = States[knightState];
                 entityState.Initialize();
             }
+        }
+        #endregion
+
+        #region Zenject
+        [Inject]
+        private void Constructor(EntityHandler entityHandler, BattleCurator battleCurator)
+        {
+            EntityHandler = entityHandler;
+            BattleCurator = battleCurator;
         }
         #endregion
 

@@ -184,7 +184,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &130815229
 MonoBehaviour:
@@ -293,7 +293,7 @@ Transform:
   - {fileID: 705507995}
   - {fileID: 1078063852}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &593550446 stripped
 MonoBehaviour:
@@ -578,8 +578,56 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+--- !u!1 &1011769767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1011769769}
+  - component: {fileID: 1011769768}
+  m_Layer: 2
+  m_Name: MainGameSceneMonoInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1011769768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011769767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3611cbb4bcfad940a8fa4fd0fe65e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityHandler: {fileID: 2119648965}
+  battleCurator: {fileID: 2119648964}
+  playerBase: {fileID: 130815229}
+  knightRallyPoint: {fileID: 2119648968}
+--- !u!4 &1011769769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1011769767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1322438258}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1035044384 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5083705409005860887, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
@@ -768,6 +816,72 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248691760}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1322438256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1322438258}
+  - component: {fileID: 1322438257}
+  m_Layer: 2
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1322438257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322438256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: fecbdaf442a5eba42845880a5dedcf9e, type: 2}
+  _monoInstallers:
+  - {fileID: 1011769768}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+--- !u!4 &1322438258
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322438256}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1011769769}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490688615
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +950,7 @@ Transform:
   - {fileID: 1490688616}
   - {fileID: 1089105567}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2119648964
 MonoBehaviour:
@@ -850,7 +964,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2912b6b30efc23d4e9b87c0298026538, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerBase: {fileID: 130815229}
   waveState: {fileID: 4905911385348583322}
   waveText: {fileID: 593550446}
   startGame: {fileID: 4905911385348583323}
@@ -866,8 +979,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b512995e99ff587449a387b9a15ad1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rallyPoint: {fileID: 2119648968}
-  curator: {fileID: 2119648964}
 --- !u!114 &2119648966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,13 +991,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00d3e34fff8ade49b3a0f66461441f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityHandler: {fileID: 2119648965}
   spawnPoints:
   - {fileID: 34280962}
   - {fileID: 628751262}
-  knightSpawnSettings: {fileID: 11400000, guid: 8297e27d1e23b864681547a80734e363,
-    type: 2}
-  knightRallyPoint: {fileID: 1490688616}
   spawnShooter: {fileID: 4905911385348583326}
   spawnSwordsman: {fileID: 4905911385348583325}
   spawnTwoHandedSwordsman: {fileID: 4905911385348583324}
@@ -902,12 +1009,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998a1f62efca54a4cb434bb70436c566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityHandler: {fileID: 2119648965}
   spawnPoints:
   - {fileID: 268084949}
   - {fileID: 274791801}
   - {fileID: 878506734}
-  playerBase: {fileID: 130815229}
   enemySpawnSettings: {fileID: 11400000, guid: 16c03ddb1434cc14cb98c7b191e6bf6a, type: 2}
 --- !u!114 &2119648968
 MonoBehaviour:
@@ -948,7 +1053,7 @@ PrefabInstance:
     - target: {fileID: 8418710576741338394, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8418710576741338394, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
         type: 3}
