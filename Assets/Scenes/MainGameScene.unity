@@ -123,6 +123,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: cd025414911b5cb42b790a91edc7b218, type: 2}
+--- !u!114 &23350881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2218140564919882482, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
+    type: 3}
+  m_PrefabInstance: {fileID: 4905911385348583321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &34280961
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerBaseHealthBar: {fileID: 1035044384}
   buildingCapacity: {fileID: 1035044385}
+  levelOfBuilding: {fileID: 23350881}
+  upgradeCastleButton: {fileID: 1435845308}
 --- !u!1 &268084948
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +896,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1435845308 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3638677185715008864, guid: f460c2bdb5cba2c4aa6fb702b3f8c500,
+    type: 3}
+  m_PrefabInstance: {fileID: 4905911385348583321}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1490688615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1013,7 +1039,6 @@ MonoBehaviour:
   - {fileID: 268084949}
   - {fileID: 274791801}
   - {fileID: 878506734}
-  enemySpawnSettings: {fileID: 11400000, guid: 16c03ddb1434cc14cb98c7b191e6bf6a, type: 2}
 --- !u!114 &2119648968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,7 +1052,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rallyPoint: {fileID: 1490688616}
-  pointSettings: {fileID: 11400000, guid: 8297e27d1e23b864681547a80734e363, type: 2}
 --- !u!1001 &4905911385348583321
 PrefabInstance:
   m_ObjectHideFlags: 0

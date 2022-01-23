@@ -10,8 +10,11 @@ namespace GameLogic
     public sealed class PlayerBase : MonoBehaviour
     {
         #region Editor parameters
+        [Header("Components")]
         [SerializeField] private Slider playerBaseHealthBar = null;
         [SerializeField] private TextMeshProUGUI buildingCapacity = null;
+        [SerializeField] private TextMeshProUGUI levelOfBuilding = null;
+        [SerializeField] private Button upgradeCastleButton = null;
         #endregion
 
         #region Parameters
@@ -24,11 +27,7 @@ namespace GameLogic
         #endregion
 
         #region Properties
-        public float BuildingCapacity
-        {
-            get => healthPointsOfBuilding;
-            set => healthPointsOfBuilding = value;
-        }
+        public float BuildingCapacity { get => healthPointsOfBuilding; set => healthPointsOfBuilding = value; }
 
         public uint BuildingLevel
         {
@@ -45,17 +44,26 @@ namespace GameLogic
                 playerBaseHealthBar.maxValue = healthPointsOfBuilding;
                 playerBaseHealthBar.value = healthPointsOfBuilding;
 
+                levelOfBuilding.text = $"{buildingLevel}";
                 buildingCapacity.text = $"Capacity is = {healthPointsOfBuilding}";
             }
         }
         #endregion
 
         #region MonoBehaviour API
+        private void OnEnable()
+        {
+            upgradeCastleButton.onClick.AddListener(UpgradeCastle);
+        }
+
         private void Start()
         {
             playerBaseHealthBar.wholeNumbers = false;
+        }
 
-            BuildingLevel = 156;
+        private void OnDisable()
+        {
+            upgradeCastleButton.onClick.RemoveListener(UpgradeCastle);
         }
         #endregion
 
@@ -72,6 +80,11 @@ namespace GameLogic
             {
                 Debug.LogWarning(buildingIsDestroyed);
             }
+        }
+
+        private void UpgradeCastle()
+        {
+            ++BuildingLevel;
         }
         #endregion
     }
